@@ -1,0 +1,1 @@
+SELECT * FROM furama.dich_vu_di_kem;
