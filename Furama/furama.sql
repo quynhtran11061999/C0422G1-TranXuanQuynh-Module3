@@ -175,6 +175,147 @@ insert into hop_dong (ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_co
 ('7', '1', '2', '2'),
 ('8', '12', '2', '2'); 
 
-select * from nhan_vien where (ho_ten regexp "^[HKT]") and char_length(ho_ten) <=15; 
-select * from khach_hang where (dia_chi like '%Đà Nẵng' or dia_chi like '%Quảng Trị') and ((year(now())-year(ngay_sinh))>18 and (year(now())-year(ngay_sinh))<50);
-select count(*) from loai_khach where (ten_loai_khach = 'Diamond');
+-- task 2
+SELECT 
+    *
+FROM
+    nhan_vien
+WHERE
+    (ho_ten REGEXP '^[HKT]')
+        AND CHAR_LENGTH(ho_ten) <= 15; 
+
+-- task 3
+SELECT 
+    *
+FROM
+    khach_hang
+WHERE
+    (dia_chi LIKE '%Đà Nẵng'
+        OR dia_chi LIKE '%Quảng Trị')
+        AND ((YEAR(NOW()) - YEAR(ngay_sinh)) > 18
+        AND (YEAR(NOW()) - YEAR(ngay_sinh)) < 50);
+
+-- task 4
+SELECT 
+    kh.ma_khach_hang, kh.ho_ten, COUNT(*) AS so_lan_dat_phong
+FROM
+    loai_khach lk
+        JOIN
+    khach_hang kh ON lk.ma_loai_khach = kh.ma_loai_khach
+        JOIN
+    hop_dong hd ON hd.ma_khach_hang = kh.ma_khach_hang
+WHERE
+    lk.ma_loai_khach = 1
+GROUP BY hd.ma_khach_hang
+ORDER BY so_lan_dat_phong;
+
+-- task 5
+SELECT 
+    kh.ma_khach_hang,
+    kh.ho_ten,
+    lk.ten_loai_khach,
+    hd.ma_hop_dong,
+    dv.ten_dich_vu,
+    hd.ngay_lam_hop_dong,
+    hd.ngay_ket_thuc,
+    (dv.chi_phi_thue + IFNULL(hdct.so_luong * dvdk.gia, 0)) AS tong_tien
+FROM
+    khach_hang kh
+        JOIN
+    loai_khach lk ON lk.ma_loai_khach = kh.ma_loai_khach
+        LEFT JOIN
+    hop_dong hd ON hd.ma_khach_hang = kh.ma_khach_hang
+        LEFT JOIN
+    dich_vu dv ON hd.ma_dich_vu = dv.ma_dich_vu
+        LEFT JOIN
+    hop_dong_chi_tiet hdct ON hd.ma_hop_dong = hdct.ma_hop_dong
+        LEFT JOIN
+    dich_vu_di_kem dvdk ON hdct.ma_dich_vu_di_kem = dvdk.ma_dich_vu_di_kem
+GROUP BY kh.ma_khach_hang , hd.ma_hop_dong
+ORDER BY kh.ma_khach_hang;	
+
+-- task 6
+SELECT 
+    dv.ma_dich_vu,
+    dv.ten_dich_vu,
+    dv.dien_tich,
+    dv.chi_phi_thue,
+    hd.ngay_lam_hop_dong
+FROM
+    khach_hang kh
+        JOIN
+    hop_dong hd ON kh.ma_khach_hang = hd.ma_khach_hang
+        JOIN
+    dich_vu dv ON hd.ma_dich_vu = dv.ma_dich_vu
+        JOIN
+    loai_dich_vu ldv ON dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+WHERE
+    dv.ma_dich_vu NOT IN (SELECT 
+            hd.ma_dich_vu
+        FROM
+            hop_dong hd
+        WHERE
+            (hd.ngay_lam_hop_dong BETWEEN '2021-01-01' AND '2021-03-31')
+                OR (hd.ngay_ket_thuc BETWEEN '2021-01-01' AND '2021-03-31'))
+GROUP BY hd.ma_dich_vu;
+
+-- task 7
+SELECT 
+    dv.ma_dich_vu,
+    dv.ten_dich_vu,
+    dv.dien_tich,
+    dv.so_nguoi_toi_da,
+    dv.chi_phi_thue,
+    ldv.ten_loai_dich_vu
+FROM
+    dich_vu dv
+        JOIN
+    hop_dong hd ON dv.ma_dich_vu = hd.ma_dich_vu
+        JOIN
+    loai_dich_vu ldv ON dv.ma_loai_dich_vu = ldv.ma_loai_dich_vu
+WHERE
+    dv.ma_dich_vu IN (SELECT 
+            hd.ma_dich_vu
+        FROM
+            hop_dong hd
+        WHERE
+            YEAR(hd.ngay_lam_hop_dong) = '2020'
+                OR YEAR(ngay_ket_thuc) = '2020')
+        AND dv.ma_dich_vu NOT IN (SELECT 
+            hd.ma_dich_vu
+        FROM
+            hop_dong hd
+        WHERE
+            YEAR(hd.ngay_lam_hop_dong) = '2021'
+                OR YEAR(ngay_ket_thuc) = '2021')
+GROUP BY dv.ma_dich_vu;
+
+-- task 8
+SELECT DISTINCT
+    ho_ten
+FROM
+    khach_hang;
+
+-- task 9
+SELECT 
+    MONTH(hd.ngay_lam_hop_dong) AS thang,
+    COUNT(MONTH(hd.ngay_lam_hop_dong)) AS so_luong_khach_hang
+FROM
+    hop_dong hd
+WHERE
+    YEAR(hd.ngay_lam_hop_dong) = '2021'
+GROUP BY thang
+ORDER BY thang;
+
+-- task 10 
+SELECT 
+    hd.ma_hop_dong,
+    hd.ngay_lam_hop_dong,
+    hd.ngay_ket_thuc,
+    hd.tien_dat_coc,
+    SUM(hdct.so_luong) AS so_luong_dich_vu_di_kem
+FROM
+    hop_dong hd
+        LEFT JOIN
+    hop_dong_chi_tiet hdct ON hd.ma_hop_dong = hdct.ma_hop_dong
+GROUP BY hd.ma_hop_dong;
