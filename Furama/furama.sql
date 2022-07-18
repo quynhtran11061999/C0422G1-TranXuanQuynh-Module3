@@ -177,3 +177,4 @@ insert into hop_dong (ma_hop_dong, ngay_lam_hop_dong, ngay_ket_thuc, tien_dat_co
 
 select * from nhan_vien where (ho_ten regexp "^[HKT]") and char_length(ho_ten) <=15; 
 select * from khach_hang where (dia_chi like '%Đà Nẵng' or dia_chi like '%Quảng Trị') and ((year(now())-year(ngay_sinh))>18 and (year(now())-year(ngay_sinh))<50);
+select count(*) from loai_khach where (ten_loai_khach = 'Diamond');
