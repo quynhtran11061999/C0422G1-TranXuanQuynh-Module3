@@ -319,3 +319,39 @@ FROM
         LEFT JOIN
     hop_dong_chi_tiet hdct ON hd.ma_hop_dong = hdct.ma_hop_dong
 GROUP BY hd.ma_hop_dong;
+
+-- task 11
+SELECT 
+    dvdk.ma_dich_vu_di_kem, dvdk.ten_dich_vu_di_kem
+FROM
+    dich_vu_di_kem dvdk
+        JOIN
+    hop_dong_chi_tiet hdct ON dvdk.ma_dich_vu_di_kem = hdct.ma_dich_vu_di_kem
+        JOIN
+    hop_dong hd ON hdct.ma_hop_dong = hd.ma_hop_dong
+        JOIN
+    khach_hang kh ON hd.ma_khach_hang = kh.ma_khach_hang
+        JOIN
+    loai_khach lk ON kh.ma_loai_khach = lk.ma_loai_khach
+WHERE
+    lk.ten_loai_khach = 'Diamond'
+        AND (dia_chi LIKE '%Vinh'
+        OR dia_chi LIKE '%Quảng Ngãi');
+        
+-- task 12 Hiển thị thông tin ma_hop_dong, ho_ten (nhân viên), ho_ten (khách hàng), so_dien_thoai (khách hàng), 
+-- ten_dich_vu, so_luong_dich_vu_di_kem (được tính dựa trên việc sum so_luong ở dich_vu_di_kem), tien_dat_coc của 
+-- tất cả các dịch vụ đã từng được khách hàng đặt vào 3 tháng cuối năm 2020 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2021.
+select 
+hd.ma_hop_dong, 
+nv.ho_ten,
+kh.ho_ten,
+kh.so_dien_thoai,
+dv.ten_dich_vu,
+sum(hdct.so_luong) as so_luong_dich_vu_di_kem,
+hd.tien_dat_coc
+from hop_dong hd 
+join khach_hang kh on hd.ma_khach_hang = kh.ma_khach_hang
+join nhan_vien nv on hd.ma_nhan_vien = nv.ma_nhan_vien
+join dich_vu dv on hd.ma_dich_vu = dv.ma_dich_vu
+join hop_dong_chi_tiet hdct on hd.ma_hop_dong = hdct.ma_hop_dong
+where hd.ma_hop_dong in (select )

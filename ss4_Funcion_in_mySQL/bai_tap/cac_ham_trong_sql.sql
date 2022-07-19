@@ -1,5 +1,6 @@
 use quan_ly_sinh_vien;
 
+-- Hiển thị tất cả các thông tin môn học (bảng subject) có credit lớn nhất.
 SELECT 
     *
 FROM
@@ -10,6 +11,7 @@ WHERE
         FROM
             subject);
 
+-- Hiển thị các thông tin môn học có điểm thi lớn nhất.
 SELECT 
     *
 FROM
@@ -20,6 +22,7 @@ WHERE
         FROM
             mark);
 
+-- Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
 SELECT 
     s.StudentId,
     s.StudentName,
