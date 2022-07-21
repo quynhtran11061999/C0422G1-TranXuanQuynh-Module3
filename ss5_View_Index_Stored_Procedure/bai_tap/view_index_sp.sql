@@ -79,7 +79,8 @@ delimiter $$
 create procedure update_products(IN id_update int,p_code varchar(20),p_name varchar(20),p_price double,p_amount int,p_description varchar(50),p_status varchar(20))
 begin 
 	update products
-	set product_code = p_code,
+	set
+    product_code = p_code,
     product_name = p_name,
     product_price = p_price, 
     product_amount = p_amount,
