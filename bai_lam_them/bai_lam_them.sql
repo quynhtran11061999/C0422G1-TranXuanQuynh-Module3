@@ -236,3 +236,14 @@ FROM
     project p ON p.project_id = ins.project_id
 GROUP BY ins.project_id
 HAVING so_luong > 2;
+
+-- 6. Đưa ra mã số, họ tên và điểm của các sinh viên khoa ‘DIALY và QLTN’
+SELECT 
+    s.student_id,
+    s.student_name
+FROM
+    student s
+        JOIN
+    faculty f ON s.faculty_id = f.faculty_id
+WHERE
+    f.faculty_name = 'Dia ly va QLTN';
