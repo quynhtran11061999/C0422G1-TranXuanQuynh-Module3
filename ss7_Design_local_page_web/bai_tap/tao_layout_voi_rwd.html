@@ -27,7 +27,7 @@
             background-color: black;
         }
 
-        a{
+        a {
             text-decoration: none;
             text-align: center;
             color: #9D9D9D;
@@ -81,6 +81,11 @@
         .col-12 {
             width: 100%;
         }
+        .button{
+            width: 150px;
+            height: 100px;
+            margin: 20px;
+        }
 
         .row {
             display: flex;
@@ -91,53 +96,63 @@
             margin-left: 0px;
             margin-top: 8px;
         }
-        #contain1{
+
+        #contain {
             color: blue;
             background-color: #CDCDCD;
             text-align: center;
 
         }
-        #contain2{
-            background-color: white;
-        }
-        #contain3{
-            background-color: #CDCDCD;
+
+        #footer {
+            background-color: #222222;
+            color: white;
+            text-align: center;
+            height: 20px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
 <div id="header" class="row">
-    <div class="col-1"><a href="#" >Logo</a></li></div>
-    <div class="col-1"><a href="#" >Home</a></li></div>
-    <div class="col-1"><a href="#" >About</a></li></div>
-    <div class="col-1"><a href="#" >Projects</a></li></div>
-    <div class="col-1"><a href="#" >Contact</a></li></div>
+    <div class="col-1"><a href="#">Logo</a></li></div>
+    <div class="col-1"><a href="#">Home</a></li></div>
+    <div class="col-1"><a href="#">About</a></li></div>
+    <div class="col-1"><a href="#">Projects</a></li></div>
+    <div class="col-1"><a href="#">Contact</a></li></div>
     <div class="col-6"></div>
-    <div class="col-1"><a href="#" ><i id="login" style=" color:#9D9D9D " class="fa-solid fa-right-to-bracket"></i>  Login</a></div>
-</div>
-<div class="row">
-    <div class="col-2" id="contain1">
-        <ul>Link</ul>
-        <ul>Link</ul>
-        <ul>Link</ul>
+    <div class="col-1"><a href="#"><i id="login" style=" color:#9D9D9D " class="fa-solid fa-right-to-bracket"></i> Login</a>
     </div>
-    <div class="col-8"id="contain2">
-        <h1>Welcome</h1>
-        <p>Lorem ipsum dolor st amet, consecteturadipiscing cit, sed do elusmod tempor incicidunt utIdbore et
-            .dolore magna alqua. Ut enim ad miim veniam, qus nostrud oxeroitation ularmco laboris ni ut aicuÏp ex 6a.
-            'commodo coneequat. Excepfeursỉnt ocaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            rmolit arim ld eetlaborum consectetur ađpiscing li, sed do eiuerrod ternpor inoiđdunt utlabore et dolore.
-            magna alqua. Ut enim ad miim veniam, quls nostrud exereitaon ulamco laboris nisi ut aliquip ex ea
-            .cormmodo consequst.</p>
+</div>
+<div class="row" style="height: 600px">
+    <div class="col-2" id="contain">
+        <h3>Link</h3>
+        <h3>Link</h3>
+        <h3>Link</h3>
 
-        <h1>Test</h1>
-        <p>Lorem ipsum...</p>
     </div>
-    <div class="col-2" id="contain3">
-        <p>Ads</p>
-        <p>Ads</p>
+    <div class="col-8">
+        <h1 style="margin: 20px">Welcome</h1>
+        <p style="margin: 20px; text-align: justify">One Piece là bộ truyện tranh dành cho thiếu niên của tác giả nổi
+            tiếng Oda Eiichiro. Bộ manga này được chuyển thể thành một series anime nhiều tập hài hước, đặc sắc.
+            Phim Đảo Hải Tặc mở đầu câu chuyện bằng cảnh xử tử vua hải tặc Gol D. Roger. Trước khi chết ông đã tiết lộ
+            rằng mình có một kho báu được giấu ngoài biển.
+            Nếu ai tìm thấy kho báu thì chúng sẽ thuộc về người đó. Rất nhiều người gan dạ đã đổ xô ra biển để tìm kiếm
+            kho báu bí ẩn của vua hải tặc Gol D. Roger. Từ đây bắt đầu kỷ nguyên Đại hải tặc trên biển. Monkey D. Luffy từ nhỏ đã ngưỡng mộ những hải tặc.
+            Cậu quyết chí lập ra một băng hải tặc cho riêng mình - băng hải tặc Mũ Rơm. Từ đó chuyến phiêu lưu trên biển nhằm tìm kiếm kho báu bắt đầu.
+            Trong cuộc hành trình của mình, băng hải tặc Mũ Rơm gặp phải các thuyền hải tặc xấu xa khác và phải đối mặt với sự truy diệt hải tặc của chính phủ.
+            Mỗi thành viên của băng hải tặc Mũ Rơm đều có một câu chuyện ẩn sau vẻ ngoài bất cần của mình.</p>
+        <hr style="width: 90%">
+        <h1 style="margin: 20px">Test</h1>
+        <p style="margin: 20px">One Piece...</p>
+    </div>
+    <div style="background-color: darkgray; text-align: center" class="col-2">
+        <button type="button" class="button">ADS</button>
+        <button type="button" class="button">ADS</button>
     </div>
 </div>
-<div  class=" row col-12">Footer Text</div>
+<div  id="footer" class=" row col-12">
+    <p style="vertical-align: middle; width: 100%; color: white">Footer Text</p>
+</div>
 </body>
 </html>
