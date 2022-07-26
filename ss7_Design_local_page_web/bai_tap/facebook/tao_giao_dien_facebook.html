@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://kit.fontawesome.com/d6e19ea644.js" crossorigin="anonymous"></script>
+    <style>
+        .col-1 {
+            width: 8.33%;
+        }
+
+        .col-2 {
+            width: 16.66%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.33%;
+        }
+
+        .col-5 {
+            width: 41.66%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.33%;
+        }
+
+        .col-8 {
+            width: 66.66%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.66%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .row {
+            content: "";
+            clear: both;
+            display: block;
+        }
+
+        [class*= "col-"] {
+            float: left;
+            padding: 15px;
+        }
+
+        i {
+            font-size: 30px;
+            color: #C3C7DB;
+            margin: 0 10px 0 10px;
+        }
+
+        li {
+            list-style: none;
+            position: relative;
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        ul {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<header class="row">
+    <nav class="col-3" style="display: flex">
+        <i style="font-size: 40px;color: blue" class="fa-brands fa-facebook"></i>
+        <input type="text" value="Tìm kiếm trên facebook" style="margin: 5px ; border-radius: 30px ; width: 400px">
+    </nav>
+    <nav class="col-6" style="text-align: center; font-size: 30px">
+        <i class="fa-solid fa-house"></i>
+        <i class="fa-solid fa-store"></i>
+        <i class="fa-solid fa-user-group"></i>
+        <i class="fa-solid fa-video"></i>
+    </nav>
+    <nav class="col-3" style="text-align: center; font-size: 30px">
+        <i class="fa-solid fa-bars"></i>
+        <i class="fa-solid fa-message"></i>
+        <i class="fa-solid fa-bell"></i>
+    </nav>
+    <hr style="width: 100%">
+</header>
+<div class="row">
+    <div class="col-3" style="text-align: center">
+        <ul>
+            <li><i class="fa-solid fa-user-group"></i></li>
+            <li><i class="fa-solid fa-people-group"></i></li>
+            <li><i class="fa-solid fa-store"></i></li>
+            <li><i class="fa-solid fa-clock-rotate-left"></i></li>
+            <li><i class="fa-solid fa-bookmark"></i></li>
+            <li><i class="fa-solid fa-gamepad-modern"></i></li>
+            <li><i class="fa-solid fa-calendar-star"></i></li>
+        </ul>
+    </div>
+    <div class="col-6" style="text-align: center">
+        <img src="noidungfb.png" height="827" width="738"/></div>
+    <div class="col-3" style="text-align: center">
+        <img src="Screenshot 2022-07-26 214654.png" height="720" width="355"/>
+    </div>
+</div>
+</body>
+</html>
