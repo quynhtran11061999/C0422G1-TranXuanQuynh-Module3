@@ -8,17 +8,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>Calculator</title>
   </head>
   <body>
   <h1>Simple Calculator</h1>
   <form action="/calculator" method="post">
-    <fieldset>
-      <legend>Calculator</legend>
+      <h3>Calculator</h3>
       <table>
         <tr>
           <td>First operand: </td>
-          <td><input name="first-operand" type="text"/></td>
+          <td><input name="firstNumber" type="number"/></td>
         </tr>
         <tr>
           <td>Operator: </td>
@@ -33,14 +32,13 @@
         </tr>
         <tr>
           <td>Second operand: </td>
-          <td><input name="second-operand" type="text"/></td>
+          <td><input name="secondNumber" type="number"/></td>
         </tr>
         <tr>
           <td></td>
           <td><input type="submit" value="Calculate"/></td>
         </tr>
       </table>
-    </fieldset>
   </form>
   </body>
 </html>

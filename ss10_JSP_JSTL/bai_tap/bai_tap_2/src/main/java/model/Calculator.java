@@ -1,25 +1,25 @@
 package model;
 
 public class Calculator {
-    public static float calculate(float firstOperand, float secondOperand, char Operator) {
-        switch (Operator) {
-            case '+' :
-               return firstOperand + secondOperand;
-               break;
-            case '-':
-                return firstOperand - secondOperand;
+    public static String calculate(double firstNumber, double secondNumber, String operator) {
+        double result = 0;
+        switch (operator) {
+            case "+":
+                result = firstNumber + secondNumber;
                 break;
-            case '*':
-                return firstOperand * secondOperand;
+            case "-":
+                result = firstNumber - secondNumber;
                 break;
-            case '/':
-                if (secondOperand != 0){
-                    return firstOperand / secondOperand;
-                } else {
-                    try {
-
-                    }catch ()
+            case "*":
+                result = firstNumber * secondNumber;
+                break;
+            case "/":
+                if (secondNumber == 0) {
+                    return "Không chia được cho 0";
                 }
+                result = firstNumber / secondNumber;
+                break;
         }
+        return "Kết quả: " + result;
     }
 }

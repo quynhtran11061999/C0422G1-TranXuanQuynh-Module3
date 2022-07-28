@@ -7,10 +7,11 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
-    <title>$Title$</title>
-  </head>
-  <body>
-  $END$
-  </body>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+<h1>Kết quả là:</h1>
+<h3>${firstNumber}${operator}${secondNumber} = ${result}</h3>
+</body>
 </html>
