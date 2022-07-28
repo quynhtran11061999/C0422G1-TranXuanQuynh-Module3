@@ -5,12 +5,21 @@ public class Calculator {
         switch (Operator) {
             case '+' :
                return firstOperand + secondOperand;
+               break;
             case '-':
                 return firstOperand - secondOperand;
+                break;
             case '*':
                 return firstOperand * secondOperand;
+                break;
             case '/':
-                return firstOperand / secondOperand;
+                if (secondOperand != 0){
+                    return firstOperand / secondOperand;
+                } else {
+                    try {
+
+                    }catch ()
+                }
         }
     }
 }
