@@ -22,7 +22,10 @@
     </tr>
     <c:forEach var="customer" items="${customerList}" varStatus="status">
         <tr>
-
+            <td>${customer.name}</td>
+            <td>${customer.birthday}</td>
+            <td>${customer.address}</td>
+            <td><img width="250px" height="150px" src="${customer.image}" ></td>
         </tr>
     </c:forEach>
 </table>
