@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
-  <head>
+<head>
     <title>Customer</title>
-  </head>
-  <body>
-  <h1>Customer</h1>
-  <c:redirect url="/customer"></c:redirect>
-  </body>
+</head>
+<body>
+<h1>Customer</h1>
+<c:redirect url="/customer"></c:redirect>
+</body>
 </html>

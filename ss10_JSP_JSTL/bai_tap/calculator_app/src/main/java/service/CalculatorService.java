@@ -1,6 +1,6 @@
-package model;
+package service;
 
-public class Calculator {
+public class CalculatorService {
     public static String calculate(double firstNumber, double secondNumber, String operator) {
         double result = 0;
         switch (operator) {
