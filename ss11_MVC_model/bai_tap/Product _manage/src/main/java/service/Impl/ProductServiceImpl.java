@@ -21,22 +21,27 @@ public class ProductServiceImpl implements IProductService {
     }
 
     @Override
-    public void update() {
-
+    public void update(int id, Product product) {
+        productRepository.update(id, product);
     }
 
     @Override
-    public void delete() {
+    public Product searchById(int id) {
+        return productRepository.searchById(id);
+    }
 
+    @Override
+    public List<Product> searchByName(String name) {
+        return productRepository.searchByName(name);
+    }
+
+    @Override
+    public void delete(int id) {
+        productRepository.delete(id);
     }
 
     @Override
     public void viewProduct() {
-
-    }
-
-    @Override
-    public void searchByName() {
 
     }
 }

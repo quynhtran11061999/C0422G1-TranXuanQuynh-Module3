@@ -6,9 +6,16 @@ import java.util.List;
 
 public interface IProductRepository {
     List<Product> display();
+
     void add(Product product);
-    void update();
-    void delete();
+
+    void update(int id, Product product);
+
+    void delete(int id);
+
     void viewProduct();
-    void searchByName();
+
+    Product searchById(int id);
+
+    List<Product> searchByName(String name);
 }
