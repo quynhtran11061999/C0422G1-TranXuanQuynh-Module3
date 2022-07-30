@@ -1,8 +1,12 @@
 package service;
 
-public interface ProductService {
-    void display();
-    void add();
+import model.Product;
+
+import java.util.List;
+
+public interface IProductService {
+   List<Product> display();
+    void add(Product product);
     void update();
     void delete();
     void viewProduct();

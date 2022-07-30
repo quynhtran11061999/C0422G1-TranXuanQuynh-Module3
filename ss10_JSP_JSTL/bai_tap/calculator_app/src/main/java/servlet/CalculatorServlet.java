@@ -23,7 +23,7 @@ public class CalculatorServlet extends HttpServlet {
         String result = CalculatorService.calculate(firstNumber,secondNumber,operator);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view.jsp");
         request.setAttribute("firstNumber",firstNumber);
-        request.setAttribute("secondNumber",secondNumber);
+        request.setAttribute("secondNumber",secondNumber)   ;
         request.setAttribute("operator",operator);
         request.setAttribute("result",result);
         requestDispatcher.forward(request,response);
