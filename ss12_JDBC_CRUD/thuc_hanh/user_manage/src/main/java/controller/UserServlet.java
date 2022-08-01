@@ -1,7 +1,7 @@
 package controller;
 
 import model.User;
-import repository.Impl.UserDAO;
+import repository.Impl.UserRepositoryImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -13,10 +13,10 @@ import java.util.List;
 @WebServlet(name = "UserServlet", value = "/users")
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private UserDAO userDAO;
+    private UserRepositoryImpl userDAO;
 
     public void init() {
-        userDAO = new UserDAO();
+        userDAO = new UserRepositoryImpl();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -38,12 +38,28 @@ public class UserServlet extends HttpServlet {
                 case "delete":
                     deleteUser(request, response);
                     break;
+                case "sortByName":
+                    sortByName(request, response);
+                    break;
                 default:
                     listUser(request, response);
                     break;
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
+        }
+    }
+
+    private void sortByName(HttpServletRequest request, HttpServletResponse response) {
+        List<User> listUser = userDAO.sortByName();
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user/list.jsp");
+        request.setAttribute("listUser",listUser);
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

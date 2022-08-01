@@ -48,5 +48,8 @@
         </c:forEach>
     </table>
 </div>
+<form action="/users?action=sortByName">
+    <button type="submit">Sắp xếp theo tên</button>
+</form>
 </body>
 </html>
