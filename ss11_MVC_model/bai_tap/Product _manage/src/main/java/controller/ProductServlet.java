@@ -12,7 +12,7 @@ import java.util.List;
 
 @WebServlet(name = "ProductServlet", urlPatterns = {"", "/products"})
 public class ProductServlet extends HttpServlet {
-     private IProductService productService = new ProductServiceImpl();
+    private IProductService productService = new ProductServiceImpl();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,9 +33,37 @@ public class ProductServlet extends HttpServlet {
                 showDeleteForm(request, response);
                 break;
             case "viewProduct":
-                viewProduct(request,response);
+                viewProduct(request, response);
                 break;
             case "searchByName":
+                break;
+            default:
+                listProduct(request, response);
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "add":
+                addProduct(request, response);
+                break;
+            case "update":
+                updateProduct(request, response);
+                break;
+            case "delete":
+                deleteProduct(request, response);
+                break;
+            case "viewProduct":
+                break;
+            case "searchByName":
+                searchProduct(request, response);
                 break;
             default:
                 listProduct(request, response);
@@ -46,7 +74,7 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = this.productService.searchById(id);
         RequestDispatcher requestDispatcher;
-        if(product == null){
+        if (product == null) {
             requestDispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             request.setAttribute("product", product);
@@ -125,41 +153,14 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "add":
-                addProduct(request, response);
-                break;
-            case "update":
-                updateProduct(request, response);
-                break;
-            case "delete":
-                deleteProduct(request, response);
-                break;
-            case "viewProduct":
-                break;
-            case "searchByName":
-                searchProduct(request,response);
-                break;
-            default:
-                listProduct(request, response);
-        }
-    }
 
     private void searchProduct(HttpServletRequest request, HttpServletResponse response) {
         String name = request.getParameter("name");
         List<Product> products = productService.searchByName(name);
-        request.setAttribute("products",products);
+        request.setAttribute("products", products);
         request.setAttribute("flag", 1);
         try {
-            request.getRequestDispatcher("view/product/display.jsp").forward(request,response);
+            request.getRequestDispatcher("view/product/display.jsp").forward(request, response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -171,7 +172,7 @@ public class ProductServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("id"));
         Product product = this.productService.searchById(id);
         RequestDispatcher requestDispatcher;
-        if(product == null){
+        if (product == null) {
             requestDispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
             this.productService.delete(id);

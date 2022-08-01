@@ -18,7 +18,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
     private static final String SEARCH_BY_COUNTRY = "select * from users where country = ?";
-    private static final String SORT_BY_NAME = "select * from users oder by name";
+    private static final String SORT_BY_NAME = "select * from users order by name";
 
     public UserRepositoryImpl() {
     }

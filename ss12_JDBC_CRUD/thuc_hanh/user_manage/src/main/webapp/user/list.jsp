@@ -19,10 +19,13 @@
         <a href="/users?action=create">Add New User</a>
     </h2>
 
-<form action="/users?action=searchByCountry" method="post">
-    <input type="search" name="country">
-    <button type="submit">Tìm kiếm</button>
-</form>
+    <form action="/users?action=searchByCountry" method="post">
+        <input type="search" name="country">
+        <button type="submit">Tìm kiếm</button>
+    </form>
+    <form action="/users?action=sortByName" method="post">
+        <button type="submit">Sắp xếp theo tên</button>
+    </form>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
@@ -48,8 +51,5 @@
         </c:forEach>
     </table>
 </div>
-<form action="/users?action=sortByName">
-    <button type="submit">Sắp xếp theo tên</button>
-</form>
 </body>
 </html>
