@@ -115,7 +115,7 @@ public class ProductServlet extends HttpServlet {
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/product/display.jsp");
         List<Product> productList = productService.display();
-        request.setAttribute("listProduct", productList);
+        request.setAttribute("products", productList);
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -157,6 +157,7 @@ public class ProductServlet extends HttpServlet {
         String name = request.getParameter("name");
         List<Product> products = productService.searchByName(name);
         request.setAttribute("products",products);
+        request.setAttribute("flag", 1);
         try {
             request.getRequestDispatcher("view/product/display.jsp").forward(request,response);
         } catch (ServletException e) {

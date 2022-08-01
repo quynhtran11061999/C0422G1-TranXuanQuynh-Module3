@@ -13,6 +13,7 @@
     <style>
         .message{
             color:green;
+
         }
         a{
             text-decoration: none;

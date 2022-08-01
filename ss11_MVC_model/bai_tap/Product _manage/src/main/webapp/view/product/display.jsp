@@ -36,33 +36,20 @@
         <c:forEach var="product" items="${products}" varStatus="status">
             <tr>
                 <td>${product.id}</td>
-                <td>${product.name}</td>
+                <td><a href="/products?action=viewProduct&id=${product.id}">${product.name}</a></td>
                 <td>${product.price}</td>
                 <td>${product.describe}</td>
                 <td>${product.producer}</td>
+                <td><a href="/products?action=update&id=${product.id}">Sửa</a></td>
+                <td><a href="/products?action=delete&id=${product.id}">Xóa</a></td>
             </tr>
         </c:forEach>
     </table>
 </form>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Tên sản phầm</th>
-        <th>Giá sản phẩm</th>
-        <th>Mô tả sản phầm</th>
-        <th>Nhà sản xuất</th>
-    </tr>
-    <c:forEach var="product" items="${listProduct}" varStatus="status">
-        <tr>
-            <td>${product.id}</td>
-            <td><a href="/products?action=viewProduct&id=${product.id}">${product.name}</a></td>
-            <td>${product.price}</td>
-            <td>${product.describe}</td>
-            <td>${product.producer}</td>
-            <td><a href="/products?action=update&id=${product.id}">Sửa</a></td>
-            <td><a href="/products?action=delete&id=${product.id}">Xóa</a></td>
-        </tr>
-    </c:forEach>
-</table>
+<c:if test="${flag==1}">
+    <p>
+        <a href="/products">Quay lại danh sách sản phẩm</a>
+    </p>
+</c:if>
 </body>
 </html>
