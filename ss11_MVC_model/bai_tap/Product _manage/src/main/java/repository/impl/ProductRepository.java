@@ -6,6 +6,7 @@ import repository.IProductRepository;
 import java.util.*;
 
 public class ProductRepository implements IProductRepository {
+
     private static Map<Integer, Product> productMap;
 
     static {
