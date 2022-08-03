@@ -17,7 +17,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private static final String SELECT_ALL_USERS = "select * from users";
     private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
     private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
-    private static final String SEARCH_BY_COUNTRY = "select * from users where country = ?";
+    private static final String SEARCH_BY_COUNTRY = "select * from users where country like ?";
     private static final String SORT_BY_NAME = "select * from users order by name";
 
     public UserRepositoryImpl() {
@@ -42,7 +42,8 @@ public class UserRepositoryImpl implements IUserRepository {
     public void insertUser(User user) throws SQLException {
         System.out.println(INSERT_USERS_SQL);
         // try-with-resource statement will auto close the connection.
-        try (Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(INSERT_USERS_SQL)) {
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getCountry());
@@ -136,7 +137,7 @@ public class UserRepositoryImpl implements IUserRepository {
         try (Connection connection = getConnection();
 
              PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_COUNTRY);) {
-            preparedStatement.setString(1, country);
+            preparedStatement.setString(1, "%"+country+"%");
             System.out.println(preparedStatement);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -145,6 +146,7 @@ public class UserRepositoryImpl implements IUserRepository {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String email = rs.getString("email");
+                country = rs.getString("country");
                 listUser.add(new User(id, name, email, country));
             }
         } catch (SQLException e) {
@@ -168,8 +170,7 @@ public class UserRepositoryImpl implements IUserRepository {
                 String name = rs.getString("name");
                 String email = rs.getString("email");
                 String country = rs.getString("country");
-                User user =new User(id, name, email, country);
-                listUser.add(user);
+                listUser.add(new User(id, name, email, country));
             }
         } catch (SQLException e) {
             printSQLException(e);
