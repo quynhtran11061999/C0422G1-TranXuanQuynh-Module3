@@ -180,40 +180,24 @@ public class UserRepository implements IUserRepository {
     // bài 2
     @Override
     public void addUserTransaction(User user, int[] permision) {
-
         Connection conn = null;
-
         PreparedStatement pstmt = null;
-
         PreparedStatement pstmtAssignment = null;
-
         ResultSet rs = null;
-
         try {
             conn = getConnection();
-
             conn.setAutoCommit(false);
-
             pstmt = conn.prepareStatement(INSERT_USERS_SQL, Statement.RETURN_GENERATED_KEYS);
-
             pstmt.setString(1, user.getName());
-
-            pstmt.setString(2, user.getEmail());
-
+//            pstmt.setString(2, user.getEmail());
+            pstmt.setString(3, user.getEmail()); // sửa lỗi để gây ra lỗi trong SQL
             pstmt.setString(3, user.getCountry());
-
             int rowAffected = pstmt.executeUpdate();
-
             rs = pstmt.getGeneratedKeys();
-
             int userId = 0;
-
             if (rs.next())
-
                 userId = rs.getInt(1);
-
             if (rowAffected == 1) {
-
                 String sqlPivot = "INSERT INTO user_permision(user_id,permision_id) "
                         + "VALUES(?,?)";
                 pstmtAssignment = conn.prepareStatement(sqlPivot);

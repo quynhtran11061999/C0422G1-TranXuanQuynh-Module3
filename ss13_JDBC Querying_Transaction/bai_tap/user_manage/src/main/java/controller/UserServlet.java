@@ -51,12 +51,6 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
-        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
-        int[] permision = {1, 2, 4};
-        userService.addUserTransaction(user, permision);
-    }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html; charset=UTF-8");
@@ -83,6 +77,12 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private void addUserPermision(HttpServletRequest request, HttpServletResponse response) {
+        User user = new User("quan", "quan.nguyen@codegym.vn", "vn");
+        int[] permision = {1, 2, 4};
+        userService.addUserTransaction(user, permision);
     }
 
     private void sortByName(HttpServletRequest request, HttpServletResponse response) {
