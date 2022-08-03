@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1cf49886-3cf6-4aef-8677-e4846e96abb6" name="Changes" comment="" />
+    <list default="true" id="1cf49886-3cf6-4aef-8677-e4846e96abb6" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -51,9 +53,11 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ss12_JDBC_CRUD/thuc_hanh/user_manage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ss12_JDBC_CRUD/bai_tap/product _manage" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -256,7 +260,9 @@
       <workItem from="1659414141220" duration="21000" />
       <workItem from="1659490478847" duration="175000" />
       <workItem from="1659490868916" duration="477000" />
-      <workItem from="1659491358981" duration="1037000" />
+      <workItem from="1659491358981" duration="1131000" />
+      <workItem from="1659492503173" duration="7000" />
+      <workItem from="1659492538010" duration="15000" />
     </task>
     <servers />
   </component>
