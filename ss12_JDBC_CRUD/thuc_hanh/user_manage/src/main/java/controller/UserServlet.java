@@ -1,9 +1,8 @@
 package controller;
 
 import model.User;
-import repository.Impl.UserRepositoryImpl;
 import service.IUserService;
-import service.Impl.UserServiceImpl;
+import service.impl.UserService;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -18,7 +17,7 @@ public class UserServlet extends HttpServlet {
     private IUserService userService;
 
     public void init() {
-        userService  = new UserServiceImpl();
+        userService  = new UserService();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

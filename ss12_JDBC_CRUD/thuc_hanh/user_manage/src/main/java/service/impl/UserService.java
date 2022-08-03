@@ -1,15 +1,15 @@
-package service.Impl;
+package service.impl;
 
 import model.User;
 import repository.IUserRepository;
-import repository.Impl.UserRepositoryImpl;
+import repository.impl.UserRepository;
 import service.IUserService;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public class UserServiceImpl implements IUserService {
-    IUserRepository userRepository = new UserRepositoryImpl();
+public class UserService implements IUserService {
+    IUserRepository userRepository = new UserRepository();
     @Override
     public void insertUser(User user) throws SQLException {
             userRepository.insertUser(user);

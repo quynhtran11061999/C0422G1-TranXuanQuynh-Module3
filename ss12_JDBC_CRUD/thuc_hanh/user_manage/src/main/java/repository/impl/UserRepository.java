@@ -1,4 +1,4 @@
-package repository.Impl;
+package repository.impl;
 
 import model.User;
 import repository.IUserRepository;
@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepositoryImpl implements IUserRepository {
+public class UserRepository implements IUserRepository {
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo";
     private String jdbcUsername = "root";
     private String jdbcPassword = "lepleplep116";
@@ -20,7 +20,7 @@ public class UserRepositoryImpl implements IUserRepository {
     private static final String SEARCH_BY_COUNTRY = "select * from users where country like ?";
     private static final String SORT_BY_NAME = "select * from users order by name";
 
-    public UserRepositoryImpl() {
+    public UserRepository() {
     }
 
     protected Connection getConnection() {
