@@ -120,7 +120,7 @@
         </table>
     </div>
 </div>
-<!-- Modal -->
+<!-- Modal delete customer -->
 <div class="modal fade" id="deleteCustomer" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form method="post" action="">
         <div class="modal-dialog">
@@ -141,7 +141,7 @@
     </form>
 </div>
 <script>
-    function deleteService(idCustomer){
+    function deleteCustomer(idCustomer){
         document.getElementById("deleteIdCustomer").value = idCustomer;
     }
 </script>

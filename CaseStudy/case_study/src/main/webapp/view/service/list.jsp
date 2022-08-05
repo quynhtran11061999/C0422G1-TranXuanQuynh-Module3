@@ -164,7 +164,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal delete service -->
 <div class="modal fade" id="deleteService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <form method="post" action="/furama?action=delete">
     <div class="modal-dialog">
