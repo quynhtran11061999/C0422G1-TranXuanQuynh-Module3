@@ -70,7 +70,6 @@
                 </td>
             </tr>
         </table>
-
     </div>
 </div>
 <%--modal add employee--%>
