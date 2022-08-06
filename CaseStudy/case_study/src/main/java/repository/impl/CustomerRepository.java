@@ -14,11 +14,12 @@ public class CustomerRepository implements ICustomerRepository {
 
     private static final String DISPLAY_CUSTOMER = "SELECT * FROM khach_hang;";
     private static final String ADD_CUSTOMER = "insert into khach_hang (ma_loai_khach, ho_ten, ngay_sinh, gioi_tinh, so_cmnd, so_dien_thoai, email, dia_chi) values (?, ?, ?, ?, ?, ?, ?, ?);";
+    private static final String EDIT_CUSTOMER = "update khach_hang set ma_loai_khach=?, ho_ten=?, ngay_sinh=?, gioi_tinh=?, so_cmnd=?, so_dien_thoai=?, email=?, dia_chi=? where ma_khach_hang=?;";
 
-    public CustomerRepository(){
+    public CustomerRepository() {
     }
 
-    protected Connection getConnection(){
+    protected Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -35,11 +36,12 @@ public class CustomerRepository implements ICustomerRepository {
     public List<Customer> displayListCustomer() {
         List<Customer> customers = new ArrayList<>();
         Connection connection = getConnection();
-        try  {
+        try {
             PreparedStatement preparedStatement = connection.prepareStatement(DISPLAY_CUSTOMER);
             System.out.println(preparedStatement);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
+                int customerId = resultSet.getInt("ma_khach_hang");
                 int customerTypeId = resultSet.getInt("ma_loai_khach");
                 String name = resultSet.getString("ho_ten");
                 String birthday = resultSet.getString("ngay_sinh");
@@ -48,7 +50,7 @@ public class CustomerRepository implements ICustomerRepository {
                 int phoneNumber = resultSet.getInt("so_dien_thoai");
                 String email = resultSet.getString("email");
                 String address = resultSet.getString("dia_chi");
-                customers.add(new Customer(customerTypeId,name,birthday,gender,idCard,phoneNumber,email,address));
+                customers.add(new Customer(customerId, customerTypeId, name, birthday, gender, idCard, phoneNumber, email, address));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -57,33 +59,47 @@ public class CustomerRepository implements ICustomerRepository {
     }
 
     @Override
-    public void addCustomer(Customer customer) throws SQLException {
-        System.out.println(ADD_CUSTOMER);
+    public void addCustomer(Customer customer) {
         Connection connection = getConnection();
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(ADD_CUSTOMER);
-            preparedStatement.setInt(1,customer.getCustomerTypeId());
+            preparedStatement.setInt(1, customer.getCustomerTypeId());
             preparedStatement.setString(2, customer.getName());
-            preparedStatement.setString(3,customer.getBirthday());
+            preparedStatement.setString(3, customer.getBirthday());
             preparedStatement.setInt(4, customer.getGender());
             preparedStatement.setInt(5, customer.getIdCard());
             preparedStatement.setInt(6, customer.getPhoneNumber());
-            preparedStatement.setString(7,customer.getEmail());
-            preparedStatement.setString(8,customer.getAddress());
-            System.out.println(preparedStatement);
-            preparedStatement.executeUpdate();
-        }catch (SQLException e) {
+            preparedStatement.setString(7, customer.getEmail());
+            preparedStatement.setString(8, customer.getAddress());
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public boolean editCustomer(Customer customer) throws SQLException {
-        return false;
+    public boolean editCustomer(Customer customer) {
+        boolean rowEdit = false;
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(EDIT_CUSTOMER);
+            preparedStatement.setInt(1, customer.getCustomerTypeId());
+            preparedStatement.setString(2, customer.getName());
+            preparedStatement.setString(3, customer.getBirthday());
+            preparedStatement.setInt(4, customer.getGender());
+            preparedStatement.setInt(5, customer.getIdCard());
+            preparedStatement.setInt(6, customer.getPhoneNumber());
+            preparedStatement.setString(7, customer.getEmail());
+            preparedStatement.setString(8, customer.getAddress());
+            preparedStatement.setInt(9,customer.getIdCustomer());
+            rowEdit = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return rowEdit;
     }
 
     @Override
-    public boolean deleteCustomer(int id) throws SQLException {
+    public boolean deleteCustomer(int id) {
         return false;
     }
 }

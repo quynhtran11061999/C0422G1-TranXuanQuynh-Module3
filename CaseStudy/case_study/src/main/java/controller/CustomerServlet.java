@@ -98,6 +98,31 @@ public class CustomerServlet extends HttpServlet {
         switch (action){
             case "insertCustomer":
                 insertCustomer(request,response);
+                break;
+            case "updateCustomer":
+                updateCustomer(request, response);
+                break;
+        }
+    }
+
+    private void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int customerTypeId = Integer.parseInt(request.getParameter("customerTypeId"));
+        String name = request.getParameter("name");
+        String birthday = request.getParameter("birthday");
+        int gender = Integer.parseInt(request.getParameter("gender"));
+        int idCard = Integer.parseInt(request.getParameter("idCard"));
+        int phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+        String email = request.getParameter("email");
+        String address = request.getParameter("address");
+        Customer customer = new Customer(customerTypeId,name,birthday,gender,idCard,phoneNumber,email,address);
+        customerService.editCustomer(customer);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/edit.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -111,11 +136,7 @@ public class CustomerServlet extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         Customer customer = new Customer(customerTypeId,name,birthday,gender,idCard,phoneNumber,email,address);
-        try {
-            customerService.addCustomer(customer);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        customerService.addCustomer(customer);
         RequestDispatcher requestDispatcher =  request.getRequestDispatcher("view/customer/add.jsp");
         try {
             requestDispatcher.forward(request,response);

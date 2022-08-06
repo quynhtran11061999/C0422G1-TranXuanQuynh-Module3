@@ -14,48 +14,50 @@
 <body>
 <%@ include file="../common/include/navbar.jsp" %>
 <div class="container-fluid">
-    <h1>Sửa thông tin khách hàng</h1>
-    <fieldset>
-        <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
-        <table>
-            <tr>
-                <td>Họ tên:</td>
-                <td><input type="text" name="customerName" id="customerName"></td>
-            </tr>
-            <tr>
-                <td>Ngày sinh:</td>
-                <td><input type="text" name="customerBirthday" id="customerBirthday"></td>
-            </tr>
-            <tr>
-                <td>Giới tính:</td>
-                <td><input type="text" name="customerGender" id="customerGender"></td>
-            </tr>
-            <tr>
-                <td>Số CMND:</td>
-                <td><input type="text" name="customerId" id="customerId"></td>
-            </tr>
-            <tr>
-                <td>Số điện thoại:</td>
-                <td><input type="text" name="customerPhoneNumber" id="customerPhoneNumber"></td>
-            </tr>
-            <tr>
-                <td>Email:</td>
-                <td><input type="text" name="customerEmail" id="customerEmail"></td>
-            </tr>
-            <tr>
-                <td>Loại khách:</td>
-                <td><input type="text" name="customerType" id="customerType"></td>
-            </tr>
-            <tr>
-                <td>Địa chỉ:</td>
-                <td><input type="text" name="customerAddress" id="customerAddress"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Thêm mới khách hàng"></td>
-            </tr>
-        </table>
-    </fieldset>
+    <form action="/customer?action=updateCustomer" method="post">
+        <h1>Sửa thông tin khách hàng</h1>
+        <fieldset>
+            <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
+            <table>
+                <tr>
+                    <td>Loại khách:</td>
+                    <td><input type="text" name="customerTypeId" id="customerTypeId"></td>
+                </tr>
+                <tr>
+                    <td>Họ tên:</td>
+                    <td><input type="text" name="name" id="name"></td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td><input type="text" name="birthday" id="birthday"></td>
+                </tr>
+                <tr>
+                    <td>Giới tính:</td>
+                    <td><input type="text" name="gender" id="gender"></td>
+                </tr>
+                <tr>
+                    <td>Số CMND:</td>
+                    <td><input type="text" name="idCard" id="idCard"></td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td><input type="text" name="phoneNumber" id="phoneNumber"></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="text" name="email" id="email"></td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td><input type="text" name="address" id="address"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Sửa thông tin khách hàng"></td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 </div>
 <%@ include file="../common/include/footer.jsp" %>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -16,17 +16,17 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public void addCustomer(Customer customer) throws SQLException {
+    public void addCustomer(Customer customer) {
         customerRepository.addCustomer(customer);
     }
 
     @Override
-    public boolean editCustomer(Customer customer) throws SQLException {
-        return false;
+    public boolean editCustomer(Customer customer) {
+        return customerRepository.editCustomer(customer);
     }
 
     @Override
-    public boolean deleteCustomer(int id) throws SQLException {
+    public boolean deleteCustomer(int id){
         return false;
     }
 }

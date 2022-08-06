@@ -8,9 +8,9 @@ import java.util.List;
 public interface ICustomerRepository {
     public List<Customer> displayListCustomer();
 
-    public void addCustomer(Customer customer) throws SQLException;
+    public void addCustomer(Customer customer);
 
-    public boolean editCustomer(Customer customer) throws SQLException;
+    public boolean editCustomer(Customer customer);
 
-    public boolean deleteCustomer(int id) throws SQLException;
+    public boolean deleteCustomer(int id);
 }
