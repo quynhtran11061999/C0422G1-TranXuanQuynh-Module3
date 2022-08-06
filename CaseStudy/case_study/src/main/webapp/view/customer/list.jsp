@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>List Customer</title>
@@ -82,41 +83,45 @@
     <div class="col-lg-12">
         <table class="table table-success table-striped">
             <tr>
+                <th>ID</th>
+                <th>Loại khách</th>
                 <th>Họ tên</th>
                 <th>Ngày sinh</th>
                 <th>Giới tính</th>
                 <th>Số CMND</th>
                 <th>Số điện thoại</th>
                 <th>Email</th>
-                <th>Loại khách</th>
                 <th>Địa chỉ</th>
                 <th>Action</th>
             </tr>
-            <tr>
-                <td>Quỳnh</td>
-                <td>11/06/1999</td>
-                <td>Nam</td>
-                <td>012345</td>
-                <td>09090909</td>
-                <td>Quynhtran</td>
-                <td>Gold</td>
-                <td>QN</td>
-                <td>
-                    <a href="/customer?action=editCustomer" class="text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
-                             class="bi bi-pen-fill" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                        </svg>
-                    </a>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#deleteCustomer" onclick="deleteCustomer(${customer.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
-                             class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                        </svg>
-                    </button>
-                </td>
-            </tr>
+            <c:forEach var="cusomer" items="${customerList}">
+                <tr>
+                    <td><c:out value="${cusomer.idCustomer}"/></td>
+                    <td><c:out value="${cusomer.customerTypeId}"/></td>
+                    <td><c:out value="${cusomer.name}"/></td>
+                    <td><c:out value="${cusomer.birthday}"/></td>
+                    <td><c:out value="${cusomer.gender}"/></td>
+                    <td><c:out value="${cusomer.idCard}"/></td>
+                    <td><c:out value="${cusomer.phoneNumber}"/></td>
+                    <td><c:out value="${cusomer.email}"/></td>
+                    <td><c:out value="${cusomer.address}"/></td>
+                    <td>
+                        <a href="/customer?action=editCustomer" class="text-decoration-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
+                                 class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                            </svg>
+                        </a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#deleteCustomer" onclick="deleteCustomer(${customer.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
+                                 class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
 </div>
@@ -130,7 +135,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" id = "deleteIdCustomer">
+                    <input type="text" id="deleteIdCustomer">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -141,7 +146,7 @@
     </form>
 </div>
 <script>
-    function deleteCustomer(idCustomer){
+    function deleteCustomer(idCustomer) {
         document.getElementById("deleteIdCustomer").value = idCustomer;
     }
 </script>

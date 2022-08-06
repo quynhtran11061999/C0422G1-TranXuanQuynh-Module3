@@ -21,11 +21,11 @@
         </a>
 
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Diamond</a></li>
-            <li><a class="dropdown-item" href="#">Platinium</a></li>
-            <li><a class="dropdown-item" href="#">Gold</a></li>
-            <li><a class="dropdown-item" href="#">Silver</a></li>
-            <li><a class="dropdown-item" href="#">Member</a></li>
+            <li><a class="dropdown-item" href="#">1</a></li>
+            <li><a class="dropdown-item" href="#">2</a></li>
+            <li><a class="dropdown-item" href="#">3</a></li>
+            <li><a class="dropdown-item" href="#">4</a></li>
+            <li><a class="dropdown-item" href="#">5</a></li>
         </ul>
     </div>
     <fieldset>
@@ -33,35 +33,35 @@
         <table>
             <tr>
                 <td>Họ tên:</td>
-                <td><input type="text" name="customerName" id="customerName"></td>
+                <td><input type="text" name="name" id="name"></td>
             </tr>
             <tr>
                 <td>Ngày sinh:</td>
-                <td><input type="text" name="customerBirthday" id="customerBirthday"></td>
+                <td><input type="text" name="birthday" id="birthday"></td>
             </tr>
             <tr>
                 <td>Giới tính:</td>
-                <td><input type="text" name="customerGender" id="customerGender"></td>
+                <td><input type="text" name="gender" id="gender"></td>
             </tr>
             <tr>
                 <td>Số CMND:</td>
-                <td><input type="text" name="customerId" id="customerId"></td>
+                <td><input type="text" name="idCard" id="idCard"></td>
             </tr>
             <tr>
                 <td>Số điện thoại:</td>
-                <td><input type="text" name="customerPhoneNumber" id="customerPhoneNumber"></td>
+                <td><input type="text" name="phoneNumber" id="phoneNumber"></td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td><input type="text" name="customerEmail" id="customerEmail"></td>
+                <td><input type="text" name="email" id="email"></td>
             </tr>
             <tr>
                 <td>Loại khách:</td>
-                <td><input type="text" name="customerType" id="customerType"></td>
+                <td><input type="text" name="customerTypeId" id="customerTypeId"></td>
             </tr>
             <tr>
                 <td>Địa chỉ:</td>
-                <td><input type="text" name="customerAddress" id="customerAddress"></td>
+                <td><input type="text" name="address" id="address"></td>
             </tr>
             <tr>
                 <td></td>
