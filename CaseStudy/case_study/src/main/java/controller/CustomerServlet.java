@@ -36,8 +36,26 @@ public class CustomerServlet extends HttpServlet {
             case "editCustomer":
                 editCustomer(request,response);
                 break;
+            case "deleteCustomer":
+                deleteCustomer(request,response);
+                break;
             default:
                 displayHome(request,response);
+        }
+    }
+
+    private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        customerService.deleteCustomer(id);
+        List<Customer> customerList = customerService.displayListCustomer();
+        request.setAttribute("customerList",customerList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/list.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -101,9 +119,9 @@ public class CustomerServlet extends HttpServlet {
                 break;
             case "updateCustomer":
                 updateCustomer(request, response);
-                break;
         }
     }
+
 
     private void updateCustomer(HttpServletRequest request, HttpServletResponse response) {
         int customerTypeId = Integer.parseInt(request.getParameter("customerTypeId"));

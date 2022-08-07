@@ -15,6 +15,7 @@ public class CustomerRepository implements ICustomerRepository {
     private static final String DISPLAY_CUSTOMER = "SELECT * FROM khach_hang;";
     private static final String ADD_CUSTOMER = "insert into khach_hang (ma_loai_khach, ho_ten, ngay_sinh, gioi_tinh, so_cmnd, so_dien_thoai, email, dia_chi) values (?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String EDIT_CUSTOMER = "update khach_hang set ma_loai_khach=?, ho_ten=?, ngay_sinh=?, gioi_tinh=?, so_cmnd=?, so_dien_thoai=?, email=?, dia_chi=? where ma_khach_hang=?;";
+    private static final String DELETE_CUSTOMER = "delete from khach_hang where ma_khach_hang = ?;";
 
     public CustomerRepository() {
     }
@@ -100,6 +101,24 @@ public class CustomerRepository implements ICustomerRepository {
 
     @Override
     public boolean deleteCustomer(int id) {
-        return false;
+//        Connection connection = getConnection();
+//        try {
+//            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMER);
+//            preparedStatement.setInt(1,id);
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return true;
+        boolean rowDelete = false;
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_CUSTOMER);
+            preparedStatement.setInt(1,id);
+            rowDelete = preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rowDelete;
     }
 }
