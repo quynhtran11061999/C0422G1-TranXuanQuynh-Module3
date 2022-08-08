@@ -64,8 +64,8 @@
                                 Dịch vụ
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/furama?action=displayService">Danh sách dịch vụ</a></li>
-                                <li><a class="dropdown-item" href="/furama?action=addService">Thêm mới dịch vụ</a></li>
+                                <li><a class="dropdown-item" href="/furama?action=showDisplayService">Danh sách dịch vụ</a></li>
+                                <li><a class="dropdown-item" href="/furama?action=showAddService">Thêm mới dịch vụ</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

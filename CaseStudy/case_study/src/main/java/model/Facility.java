@@ -32,6 +32,20 @@ public class Facility {
         this.freeService = freeService;
     }
 
+    public Facility(String name, int area, double cost, int maxPeople, int rentTypeId, int serviceTypeId, String standardRoom, String descriptionOfAmenities, double poolArea, int numberOfFloors, String freeService) {
+        this.name = name;
+        this.area = area;
+        this.cost = cost;
+        this.maxPeople = maxPeople;
+        this.rentTypeId = rentTypeId;
+        this.serviceTypeId = serviceTypeId;
+        this.standardRoom = standardRoom;
+        this.descriptionOfAmenities = descriptionOfAmenities;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
+        this.freeService = freeService;
+    }
+
     public int getIdService() {
         return idService;
     }

@@ -1,5 +1,6 @@
 package repository.impl;
 
+import model.Customer;
 import model.Facility;
 import repository.IFacilityRepository;
 
@@ -13,8 +14,16 @@ public class FacilityRepository implements IFacilityRepository {
     private String jdbcPassword = "lepleplep116";
 
     private static final String DISPLAY_FACILITY = "SELECT * FROM dich_vu where trang_thai = 1;";
+    private static final String ADD_FACILITY = "insert into dich_vu (ten_dich_vu,dien_tich,chi_phi_thue,so_nguoi_toi_da,ma_kieu_thue" +
+            ",ma_loai_dich_vu,tieu_chuan_phong,mo_ta_tien_nghi_khac,dien_tich_ho_boi,so_tang,dich_vu_mien_phi_di_kem) " +
+            "values (?,?,?,?,?,?,?,?,?,?,?);";
+    private static final String EDIT_FACILITY = "update dich_vu set ten_dich_vu = ? , dien_tich = ?, chi_phi_thue = ?, so_nguoi_toi_da = ?, ma_kieu_thue = ?,\n" +
+            " ma_loai_dich_vu = ?,tieu_chuan_phong = ?, mo_ta_tien_nghi_khac = ?,dien_tich_ho_boi = ?, so_tang = ?,dich_vu_mien_phi_di_kem = ?," +
+            "where ma_dich_vu = ?;";
+    private static final String SEARCH_BY_ID_FACILITY = "select * from dich_vu where ma_dich_vu = ?;";
 
-    public FacilityRepository(){
+
+    public FacilityRepository() {
     }
 
     protected Connection getConnection() {
@@ -29,6 +38,7 @@ public class FacilityRepository implements IFacilityRepository {
         }
         return connection;
     }
+
     @Override
     public List<Facility> displayListFacility() {
         List<Facility> facilityList = new ArrayList<>();
@@ -36,7 +46,7 @@ public class FacilityRepository implements IFacilityRepository {
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(DISPLAY_FACILITY);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 int facilityId = resultSet.getInt("ma_dich_vu");
                 String name = resultSet.getString("ten_dich_vu");
                 int area = resultSet.getInt("dien_tich");
@@ -49,8 +59,8 @@ public class FacilityRepository implements IFacilityRepository {
                 double poolArea = resultSet.getDouble("dien_tich_ho_boi");
                 int numberOfFloors = resultSet.getInt("so_tang");
                 String freeService = resultSet.getString("dich_vu_mien_phi_di_kem");
-                facilityList.add(new Facility(facilityId,name,area,cost,maxPeople,rentTypeId,serviceTypeId
-                        ,standardRoom,descriptionOfAmenities,poolArea,numberOfFloors,freeService));
+                facilityList.add(new Facility(facilityId, name, area, cost, maxPeople, rentTypeId, serviceTypeId
+                        , standardRoom, descriptionOfAmenities, poolArea, numberOfFloors, freeService));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,6 +70,83 @@ public class FacilityRepository implements IFacilityRepository {
 
     @Override
     public void addFacility(Facility facility) {
+        Connection connection =getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_FACILITY);
+            preparedStatement.setString(1, facility.getName());
+            preparedStatement.setInt(2,facility.getArea());
+            preparedStatement.setDouble(3, facility.getCost());
+            preparedStatement.setInt(4, facility.getMaxPeople());
+            preparedStatement.setInt(5, facility.getRentTypeId());
+            preparedStatement.setInt(6, facility.getServiceTypeId());
+            preparedStatement.setString(7, facility.getStandardRoom());
+            preparedStatement.setString(8, facility.getDescriptionOfAmenities());
+            preparedStatement.setDouble(9, facility.getPoolArea());
+            preparedStatement.setInt(10, facility.getNumberOfFloors());
+            preparedStatement.setString(11, facility.getFreeService());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public boolean editFacility(Facility facility) {
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(EDIT_FACILITY);
+            preparedStatement.setString(1, facility.getName());
+            preparedStatement.setInt(2,facility.getArea());
+            preparedStatement.setDouble(3, facility.getCost());
+            preparedStatement.setInt(4, facility.getMaxPeople());
+            preparedStatement.setInt(5, facility.getRentTypeId());
+            preparedStatement.setInt(6, facility.getServiceTypeId());
+            preparedStatement.setString(7, facility.getStandardRoom());
+            preparedStatement.setString(8, facility.getDescriptionOfAmenities());
+            preparedStatement.setDouble(9, facility.getPoolArea());
+            preparedStatement.setInt(10, facility.getNumberOfFloors());
+            preparedStatement.setString(11, facility.getFreeService());
+            preparedStatement.setInt(12,facility.getIdService());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteFacility(int id) {
+        return false;
+    }
+
+    @Override
+    public Facility searchById(int id) {
+        Facility facility = null;
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_ID_FACILITY);
+            preparedStatement.setInt(1,id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int facilityId = resultSet.getInt(1);
+                String name = resultSet.getString(2);
+                int area = resultSet.getInt(3);
+                double cost = resultSet.getDouble(4);
+                int maxPeople = resultSet.getInt(5);
+                int rentTypeId = resultSet.getInt(6);
+                int serviceTypeId = resultSet.getInt(7);
+                String standardRoom = resultSet.getString(8);
+                String descriptionOfAmenities = resultSet.getString(9);
+                double poolArea = resultSet.getDouble(10);
+                int numberOfFloors = resultSet.getInt(11);
+                String freeService = resultSet.getString(12);
+                facility = new Facility(facilityId,name,area,cost,maxPeople,rentTypeId,
+                        serviceTypeId,standardRoom,descriptionOfAmenities,poolArea,numberOfFloors,freeService);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return facility;
     }
 }

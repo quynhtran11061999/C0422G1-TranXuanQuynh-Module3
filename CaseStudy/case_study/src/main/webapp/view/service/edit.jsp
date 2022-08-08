@@ -15,49 +15,125 @@
 <%@ include file = "../common/include/navbar.jsp" %>
 <div class="container-fluid">
     <h1>Sửa thông tin dịch vụ</h1>
-    <fieldset>
-        <legend>Thông tin dịch vụ</legend>
-        <table>
-            <tr>
-                <td>Mã dịch vụ:</td>
-                <td><input type="text" name="idService" id="idService"></td>
-            </tr>
-            <tr>
-                <td>Tên dịch vụ:</td>
-                <td><input type="text" name="nameService" id="nameService"></td>
-            </tr>
-            <tr>
-                <td>Diện tích sử dụng:</td>
-                <td><input type="text" name="area" id="area"></td>
-            </tr>
-            <tr>
-                <td>Chi phí thuê:</td>
-                <td><input type="text" name="rentalCosts" id="rentalCosts"></td>
-            </tr>
-            <tr>
-                <td>Số lượng người tối đa:</td>
-                <td><input type="text" name="maxPeople" id="maxPeople"></td>
-            </tr>
-            <tr>
-                <td>Kiểu thuê:</td>
-                <td><input type="text" name="rentalType" id="rentalType"></td>
-            </tr>
-            <tr>
-                <td>Tiêu chuẩn phòng:</td>
-                <td><input type="text" name="roomStandard" id="roomStandard"></td>
-            </tr>
-            <tr>
-                <td>Dịch vụ đi kèm:</td>
-                <td><input type="text" name="accompaniedService" id="accompaniedService"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Sửa dịch vụ"></td>
-            </tr>
-        </table>
-    </fieldset>
+    <form>
+        <fieldset>
+            <legend>Thông tin dịch vụ</legend>
+            <table class="form-control-lg">
+                <tr>
+                    <td>
+                        <select class="form-select-lg" name="serviceTypeId" onchange="showServiceInput(this.value)">
+                            <option value="None">Chọn loại dịch vụ</option>
+                            <option value="1">Villa</option>
+                            <option value="2">House</option>
+                            <option value="3">Room</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Mã khách hàng:</label>
+                        <input class="form-control" type="text" name="facilityId" size="45"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Tên dịch vụ:</label>
+                        <input class="form-control" type="text" name="name" size="45"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Diện tích sử dụng:</label>
+                        <input class="form-control" type="text" name="area" size="45"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Chi phí thuê:</label>
+                        <input class="form-control" type="text" name="cost" size="15"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Số lượng người tối đa:</label>
+                        <input class="form-control" type="text" name="maxPeople" size="15"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Kiểu thuê:</label>
+                        <input class="form-control" type="text" name="rentTypeId" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s1" style="display: none">
+                    <td><label>Tiêu chuẩn phòng:</label>
+                        <input class="form-control" type="text" name="standardRoom" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s2" style="display: none">
+                    <td><label>Mô tả tiện nghi khác:</label>
+                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s3" style="display: none">
+                    <td><label>Diện tích hồ bơi:</label>
+                        <input class="form-control" type="text" name="poolArea" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s4" style="display: none">
+                    <td><label>Số tầng:</label>
+                        <input class="form-control" type="text" name="numberOfFloors" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s5" style="display: none">
+                    <td><label>Dịch vụ miễn phí đi kèm:</label>
+                        <input class="form-control" type="text" name="freeService" size="15"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input class="form-control" type="submit" value="Thêm mới dịch vụ"/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 </div>
 <%@ include file = "../common/include/footer.jsp" %>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    function showServiceInput(value) {
+        switch (value) {
+            case "None":
+                document.getElementById("s1").style.display = "none";
+                document.getElementById("s2").style.display = "none";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "none";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "1":
+                document.getElementById("s1").style.display = "table-row";
+                document.getElementById("s2").style.display = "table-row";
+                document.getElementById("s3").style.display = "table-row";
+                document.getElementById("s4").style.display = "table-row";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "2":
+                document.getElementById("s1").style.display = "table-row";
+                document.getElementById("s2").style.display = "table-row";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "table-row";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "3":
+                document.getElementById("s1").style.display = "none";
+                document.getElementById("s2").style.display = "none";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "none";
+                document.getElementById("s5").style.display = "table-row";
+                break;
+        }
+    }
+</script>
 </body>
 </html>

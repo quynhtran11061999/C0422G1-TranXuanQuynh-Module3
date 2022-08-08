@@ -166,7 +166,6 @@ public class CustomerServlet extends HttpServlet {
         String phoneNumber = request.getParameter("phoneNumber");
         String email = request.getParameter("email");
         String address = request.getParameter("address");
-//        int status = Integer.parseInt(request.getParameter("status"));
         Customer customer = new Customer(customerTypeId, name, birthday, gender, idCard, phoneNumber, email, address);
         customerService.addCustomer(customer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/add.jsp");

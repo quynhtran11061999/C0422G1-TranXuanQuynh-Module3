@@ -16,94 +16,112 @@
 <%@ include file="../common/include/navbar.jsp" %>
 <div class="container-fluid">
     <h1>Thêm mới dịch vụ</h1>
-<%--    <div class="dropdown">--%>
-<%--        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink"--%>
-<%--           data-bs-toggle="dropdown" aria-expanded="false">--%>
-<%--            Loại dịch vụ--%>
-<%--        </a>--%>
-<%--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">--%>
-<%--            <li><a class="dropdown-item" href="#">Villa</a></li>--%>
-<%--            <li><a class="dropdown-item" href="#">House</a></li>--%>
-<%--            <li><a class="dropdown-item" href="#">Room</a></li>--%>
-<%--        </ul>--%>
-<%--    </div>--%>
-    <fieldset>
-        <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
-        <table>
-            <tr>
-                <td>Mã dịch vụ:</td>
-                <td>
-                    <div>
-                        <select onchange="changeService(this.value)" name="idService" id="idService">
-                            <option value="villa">Villa</option>
-                            <option value="home">House</option>
-                            <option value="room">Room</option>
+    <form action="/furama?action=addService" method="post">
+        <fieldset>
+            <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
+            <table class="form-control-lg">
+                <tr>
+                    <td>
+                        <select class="form-select-lg" name="serviceTypeId" onchange="showServiceInput(this.value)">
+                            <option value="None">Chọn loại dịch vụ</option>
+                            <option value="1">Villa</option>
+                            <option value="2">House</option>
+                            <option value="3">Room</option>
                         </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Tên dịch vụ:</td>
-                <td><input type="text" name="nameService" id="nameService"></td>
-            </tr>
-            <tr>
-                <td>Diện tích sử dụng:</td>
-                <td><input type="text" name="area" id="area"></td>
-            </tr>
-            <tr>
-                <td>Chi phí thuê:</td>
-                <td><input type="text" name="rentalCosts" id="rentalCosts"></td>
-            </tr>
-            <tr>
-                <td>Số lượng người tối đa:</td>
-                <td><input type="text" name="maxPeople" id="maxPeople"></td>
-            </tr>
-            <tr>
-                <td>Kiểu thuê:</td>
-                <td><input type="text" name="rentalType" id="rentalType"></td>
-            </tr>
-            <tr>
-                <td>Tiêu chuẩn phòng:</td>
-                <td><input type="text" name="roomStandard" id="roomStandard"></td>
-            </tr>
-            <tr>
-                <td>Dịch vụ đi kèm:</td>
-                <td><input type="text" name="accompaniedService" id="accompaniedService"></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Tạo mới dịch vụ"></td>
-            </tr>
-        </table>
-    </fieldset>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Tên dịch vụ:</label>
+                        <input class="form-control" type="text" name="name" size="45"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Diện tích sử dụng:</label>
+                        <input class="form-control" type="text" name="area" size="45"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Chi phí thuê:</label>
+                        <input class="form-control" type="text" name="cost" size="15"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Số lượng người tối đa:</label>
+                        <input class="form-control" type="text" name="maxPeople" size="15"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label>Kiểu thuê:</label>
+                        <input class="form-control" type="text" name="rentTypeId" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s1" style="display: none">
+                    <td><label>Tiêu chuẩn phòng:</label>
+                        <input class="form-control" type="text" name="standardRoom" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s2" style="display: none">
+                    <td><label>Mô tả tiện nghi khác:</label>
+                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s3" style="display: none">
+                    <td><label>Diện tích hồ bơi:</label>
+                        <input class="form-control" type="text" name="poolArea" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s4" style="display: none">
+                    <td><label>Số tầng:</label>
+                        <input class="form-control" type="text" name="numberOfFloors" size="15"/>
+                    </td>
+                </tr>
+
+                <tr id="s5" style="display: none">
+                    <td><label>Dịch vụ miễn phí đi kèm:</label>
+                        <input class="form-control" type="text" name="freeService" size="15"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input class="form-control" type="submit" value="Thêm mới dịch vụ"/>
+                    </td>
+                </tr>
+            </table>
+        </fieldset>
+    </form>
 </div>
 <%@ include file="../common/include/footer.jsp" %>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 <script>
-    function changeService(value) {
+    function showServiceInput(value) {
         switch (value) {
-            case "none":
+            case "None":
                 document.getElementById("s1").style.display = "none";
                 document.getElementById("s2").style.display = "none";
                 document.getElementById("s3").style.display = "none";
                 document.getElementById("s4").style.display = "none";
                 document.getElementById("s5").style.display = "none";
                 break;
-            case "villa":
+            case "1":
                 document.getElementById("s1").style.display = "table-row";
                 document.getElementById("s2").style.display = "table-row";
                 document.getElementById("s3").style.display = "table-row";
                 document.getElementById("s4").style.display = "table-row";
                 document.getElementById("s5").style.display = "none";
                 break;
-            case "home":
+            case "2":
                 document.getElementById("s1").style.display = "table-row";
                 document.getElementById("s2").style.display = "table-row";
                 document.getElementById("s3").style.display = "none";
                 document.getElementById("s4").style.display = "table-row";
                 document.getElementById("s5").style.display = "none";
                 break;
-            case "room":
+            case "3":
                 document.getElementById("s1").style.display = "none";
                 document.getElementById("s2").style.display = "none";
                 document.getElementById("s3").style.display = "none";

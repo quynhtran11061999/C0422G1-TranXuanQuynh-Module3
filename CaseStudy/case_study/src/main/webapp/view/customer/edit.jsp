@@ -20,12 +20,14 @@
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
             <table>
                 <tr>
-                <td>Mã khách hàng:</td>
-                <td><input type="text" readonly name="idCustomer" id="idCustomer" value="${listCustomer.idCustomer}"></td>
+                    <td>Mã khách hàng:</td>
+                    <td><input type="text" readonly name="idCustomer" id="idCustomer"
+                               value="${listCustomer.idCustomer}"></td>
                 </tr>
                 <tr>
                     <td>Loại khách:</td>
-                    <td><input type="text" name="customerTypeId" id="customerTypeId" value="${listCustomer.customerTypeId}"></td>
+                    <td><input type="text" name="customerTypeId" id="customerTypeId"
+                               value="${listCustomer.customerTypeId}"></td>
                 </tr>
                 <tr>
                     <td>Họ tên:</td>

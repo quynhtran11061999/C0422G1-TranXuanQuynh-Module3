@@ -10,4 +10,10 @@ public interface IFacilityService {
 
     public void addFacility(Facility facility);
 
+    public boolean editFacility(Facility facility);
+
+    public boolean deleteFacility(int id);
+
+    Facility searchById(int id);
+
 }
