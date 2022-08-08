@@ -20,36 +20,40 @@
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
             <table>
                 <tr>
+                <td>Mã khách hàng:</td>
+                <td><input type="text" readonly name="idCustomer" id="idCustomer" value="${listCustomer.idCustomer}"></td>
+                </tr>
+                <tr>
                     <td>Loại khách:</td>
-                    <td><input type="text" name="customerTypeId" id="customerTypeId"></td>
+                    <td><input type="text" name="customerTypeId" id="customerTypeId" value="${listCustomer.customerTypeId}"></td>
                 </tr>
                 <tr>
                     <td>Họ tên:</td>
-                    <td><input type="text" name="name" id="name"></td>
+                    <td><input type="text" name="name" id="name" value="${listCustomer.name}"></td>
                 </tr>
                 <tr>
                     <td>Ngày sinh:</td>
-                    <td><input type="text" name="birthday" id="birthday"></td>
+                    <td><input type="text" name="birthday" id="birthday" value="${listCustomer.birthday}"></td>
                 </tr>
                 <tr>
                     <td>Giới tính:</td>
-                    <td><input type="text" name="gender" id="gender"></td>
+                    <td><input type="text" name="gender" id="gender" value="${listCustomer.gender}"></td>
                 </tr>
                 <tr>
                     <td>Số CMND:</td>
-                    <td><input type="text" name="idCard" id="idCard"></td>
+                    <td><input type="text" name="idCard" id="idCard" value="${listCustomer.idCard}"></td>
                 </tr>
                 <tr>
                     <td>Số điện thoại:</td>
-                    <td><input type="text" name="phoneNumber" id="phoneNumber"></td>
+                    <td><input type="text" name="phoneNumber" id="phoneNumber" value="${listCustomer.phoneNumber}"></td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="text" name="email" id="email"></td>
+                    <td><input type="text" name="email" id="email" value="${listCustomer.email}"></td>
                 </tr>
                 <tr>
                     <td>Địa chỉ:</td>
-                    <td><input type="text" name="address" id="address"></td>
+                    <td><input type="text" name="address" id="address" value="${listCustomer.address}"></td>
                 </tr>
                 <tr>
                     <td></td>

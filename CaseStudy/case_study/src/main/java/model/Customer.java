@@ -6,15 +6,15 @@ public class Customer {
     private String name;
     private String birthday;
     private int gender;
-    private int idCard;
-    private int phoneNumber;
+    private String idCard;
+    private String phoneNumber;
     private String email;
     private String address;
 
     public Customer() {
     }
 
-    public Customer(int idCustomer, int customerTypeId, String name, String birthday, int gender, int idCard, int phoneNumber, String email, String address) {
+    public Customer(int idCustomer, int customerTypeId, String name, String birthday, int gender, String idCard, String phoneNumber, String email, String address) {
         this.idCustomer = idCustomer;
         this.customerTypeId = customerTypeId;
         this.name = name;
@@ -26,7 +26,7 @@ public class Customer {
         this.address = address;
     }
 
-    public Customer(int customerTypeId, String name, String birthday, int gender, int idCard, int phoneNumber, String email, String address) {
+    public Customer(int customerTypeId, String name, String birthday, int gender, String idCard, String phoneNumber, String email, String address) {
         this.customerTypeId = customerTypeId;
         this.name = name;
         this.birthday = birthday;
@@ -77,19 +77,19 @@ public class Customer {
         this.gender = gender;
     }
 
-    public int getIdCard() {
+    public String getIdCard() {
         return idCard;
     }
 
-    public void setIdCard(int idCard) {
+    public void setIdCard(String idCard) {
         this.idCard = idCard;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

@@ -1,12 +1,19 @@
 package controller;
 
+import model.Facility;
+import service.IFacilityService;
+import service.impl.FacilityService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "FuramaServlet", value = "/furama")
 public class FuramaServlet extends HttpServlet {
+    IFacilityService facilityService = new FacilityService();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
@@ -51,6 +58,8 @@ public class FuramaServlet extends HttpServlet {
     }
 
     private void displayService(HttpServletRequest request, HttpServletResponse response) {
+        List<Facility> facilityList = facilityService.displayListFacility();
+        request.setAttribute("facilityList",facilityList);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/list.jsp");
         try {
             requestDispatcher.forward(request,response);

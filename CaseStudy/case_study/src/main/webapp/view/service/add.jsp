@@ -13,26 +13,34 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-<%@ include file = "../common/include/navbar.jsp" %>
+<%@ include file="../common/include/navbar.jsp" %>
 <div class="container-fluid">
     <h1>Thêm mới dịch vụ</h1>
-    <div class="dropdown">
-        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            Loại dịch vụ
-        </a>
-
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Villa</a></li>
-            <li><a class="dropdown-item" href="#">House</a></li>
-            <li><a class="dropdown-item" href="#">Room</a></li>
-        </ul>
-    </div>
+<%--    <div class="dropdown">--%>
+<%--        <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink"--%>
+<%--           data-bs-toggle="dropdown" aria-expanded="false">--%>
+<%--            Loại dịch vụ--%>
+<%--        </a>--%>
+<%--        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">--%>
+<%--            <li><a class="dropdown-item" href="#">Villa</a></li>--%>
+<%--            <li><a class="dropdown-item" href="#">House</a></li>--%>
+<%--            <li><a class="dropdown-item" href="#">Room</a></li>--%>
+<%--        </ul>--%>
+<%--    </div>--%>
     <fieldset>
         <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
         <table>
             <tr>
                 <td>Mã dịch vụ:</td>
-                <td><input type="text" name="idService" id="idService"></td>
+                <td>
+                    <div>
+                        <select onchange="changeService(this.value)" name="idService" id="idService">
+                            <option value="villa">Villa</option>
+                            <option value="home">House</option>
+                            <option value="room">Room</option>
+                        </select>
+                    </div>
+                </td>
             </tr>
             <tr>
                 <td>Tên dịch vụ:</td>
@@ -69,7 +77,41 @@
         </table>
     </fieldset>
 </div>
-<%@ include file = "../common/include/footer.jsp" %>
+<%@ include file="../common/include/footer.jsp" %>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+    function changeService(value) {
+        switch (value) {
+            case "none":
+                document.getElementById("s1").style.display = "none";
+                document.getElementById("s2").style.display = "none";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "none";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "villa":
+                document.getElementById("s1").style.display = "table-row";
+                document.getElementById("s2").style.display = "table-row";
+                document.getElementById("s3").style.display = "table-row";
+                document.getElementById("s4").style.display = "table-row";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "home":
+                document.getElementById("s1").style.display = "table-row";
+                document.getElementById("s2").style.display = "table-row";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "table-row";
+                document.getElementById("s5").style.display = "none";
+                break;
+            case "room":
+                document.getElementById("s1").style.display = "none";
+                document.getElementById("s2").style.display = "none";
+                document.getElementById("s3").style.display = "none";
+                document.getElementById("s4").style.display = "none";
+                document.getElementById("s5").style.display = "table-row";
+                break;
+        }
+    }
+</script>
 </body>
 </html>

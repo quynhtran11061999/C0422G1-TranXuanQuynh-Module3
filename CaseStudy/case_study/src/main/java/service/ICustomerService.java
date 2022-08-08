@@ -13,4 +13,6 @@ public interface ICustomerService {
     public boolean editCustomer(Customer customer);
 
     public boolean deleteCustomer(int id);
+
+    Customer searchById(int id);
 }

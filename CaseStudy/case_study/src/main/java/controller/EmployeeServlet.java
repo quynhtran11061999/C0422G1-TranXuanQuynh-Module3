@@ -1,5 +1,8 @@
 package controller;
 
+import service.IFacilityService;
+import service.impl.FacilityService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
@@ -7,6 +10,7 @@ import java.io.IOException;
 
 @WebServlet(name = "EmployeeServlet", value = "/employee")
 public class EmployeeServlet extends HttpServlet {
+    IFacilityService facilityService = new FacilityService();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             String action = request.getParameter("action");

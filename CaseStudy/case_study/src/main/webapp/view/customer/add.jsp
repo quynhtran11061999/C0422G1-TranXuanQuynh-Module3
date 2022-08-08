@@ -16,26 +16,22 @@
 <div class="container-fluid">
     <form action="/customer?action=insertCustomer" method="post">
         <h1>Thêm mới khách hàng</h1>
-        <div class="dropdown">
-            <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-               data-bs-toggle="dropdown" aria-expanded="false">
-                Loại khách
-            </a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">1</a></li>
-                <li><a class="dropdown-item" href="#">2</a></li>
-                <li><a class="dropdown-item" href="#">3</a></li>
-                <li><a class="dropdown-item" href="#">4</a></li>
-                <li><a class="dropdown-item" href="#">5</a></li>
-            </ul>
-        </div>
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
             <table>
                 <tr>
                     <td>Mã loại khách:</td>
-                    <td><input type="text" name="customerTypeId" id="customerTypeId"></td>
+                    <td>
+                        <div>
+                            <select name="customerTypeId" id="customerTypeId">
+                                <option value="1">Diamond</option>
+                                <option value="2">Platinium</option>
+                                <option value="3">Gold</option>
+                                <option value="4">Silver</option>
+                                <option value="5">Member</option>
+                            </select>
+                        </div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Họ tên:</td>

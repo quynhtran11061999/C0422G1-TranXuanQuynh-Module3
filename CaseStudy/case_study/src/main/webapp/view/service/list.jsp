@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>List Service</title>
@@ -78,88 +79,50 @@
     <div class="col-lg-12">
         <table class="table table-success table-striped">
             <tr>
-                <th>STT</th>
+                <th>Mã dịch vụ</th>
                 <th>Tên dịch vụ</th>
-                <th>Diện tích sử dụng</th>
+                <th>Diện tích</th>
                 <th>Chi phí thuê</th>
                 <th>Số lượng người tối đa</th>
-                <th>Kiểu thuê</th>
+                <th>Mã kiểu thuê</th>
+                <th>Mã loại dịch vụ</th>
                 <th>Tiêu chuẩn phòng</th>
+                <th>Mô tả tiện nghi khác</th>
+                <th>Diện tích hồ bơi</th>
+                <th>Số tầng</th>
                 <th>Các dịch vụ đi kèm</th>
                 <th>Action</th>
             </tr>
-            <tr>
-                <td>1</td>
-                <td>Villa</td>
-                <td>100m</td>
-                <td>5000$</td>
-                <td>10</td>
-                <td>Ngày</td>
-                <td>Rộng rãi</td>
-                <td>Đồ ăn sáng</td>
-                <td>
-                    <a href="/furama?action=editService" class="text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
-                             class="bi bi-pen-fill" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                        </svg>
-                    </a>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteService" onclick="deleteService(${service.id})">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
-                             class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                        </svg>
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Villa</td>
-                <td>100m</td>
-                <td>5000$</td>
-                <td>10</td>
-                <td>Ngày</td>
-                <td>Rộng rãi</td>
-                <td>Đồ ăn sáng</td>
-                <td>
-                    <a href="/furama?action=editService" class="text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
-                             class="bi bi-pen-fill" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                        </svg>
-                    </a>
-                    <a href="list.jsp" class="text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
-                             class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                        </svg>
-                    </a>
-                </td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Villa</td>
-                <td>100m</td>
-                <td>5000$</td>
-                <td>10</td>
-                <td>Ngày</td>
-                <td>Rộng rãi</td>
-                <td>Đồ ăn sáng</td>
-                <td>
-                    <a href="/furama?action=editService" class="text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
-                             class="bi bi-pen-fill" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
-                        </svg>
-                    </a>
-                    <a href="list.jsp" class="text-decoration-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
-                             class="bi bi-trash-fill" viewBox="0 0 16 16">
-                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                        </svg>
-                    </a>
-                </td>
-            </tr>
+            <c:forEach var="facility" items="${facilityList}">
+                <tr>
+                    <td>${facility.idService}</td>
+                    <td>${facility.name}</td>
+                    <td>${facility.area}</td>
+                    <td>${facility.cost}</td>
+                    <td>${facility.maxPeople}</td>
+                    <td>${facility.rentTypeId}</td>
+                    <td>${facility.serviceTypeId}</td>
+                    <td>${facility.standardRoom}</td>
+                    <td>${facility.descriptionOfAmenities}</td>
+                    <td>${facility.poolArea}</td>
+                    <td>${facility.numberOfFloors}</td>
+                    <td>${facility.freeService}</td>
+                    <td>
+                        <a href="/furama?action=editService" class="text-decoration-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
+                                 class="bi bi-pen-fill" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
+                            </svg>
+                        </a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteService" onclick="deleteService(${service.id})">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
+                                 class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            </c:forEach>
         </table>
     </div>
 </div>
