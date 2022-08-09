@@ -33,16 +33,19 @@
                 <tr>
                     <td><label>Tên dịch vụ:</label>
                         <input class="form-control" type="text" name="name" size="45">
+                        <div style="color:red;">${name}</div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Diện tích sử dụng:</label>
                         <input class="form-control" type="text" name="area" size="45">
+                        <div style="color: red">${area}</div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Chi phí thuê:</label>
                         <input class="form-control" type="text" name="cost" size="15" >
+                        <div style="color: red">${cost1}</div>
                     </td>
                 </tr>
                 <tr>
@@ -77,6 +80,7 @@
                 <tr id="s4" style="display: none">
                     <td><label>Số tầng:</label>
                         <input class="form-control" type="text" name="numberOfFloors" size="15">
+                        <div style="color: red">${numberOfFloors}</div>
                     </td>
                 </tr>
 

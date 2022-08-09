@@ -47,18 +47,32 @@ public class FacilityService implements IFacilityService {
     @Override
     public Map<String, String> add(Facility facility) {
         Map<String,String> mapErrors = new HashMap<>();
-////        validat name
-//        if (!facility.getName().isEmpty()){
-//            if (!customer.getName().matches("^([A-Z][a-z])+( [A-Z][a-z]+)*$")){
-//                mapErrors.put("nameCustomer","Vui lòng nhập đúng định dạng!");
-//            }
-//        } else {
-//            mapErrors.put("nameCustomer","Vui lòng nhập tên!");
-//        }
-//
-//        if (mapErrors.size()==0){
-//            this.customerRepository.addCustomer(customer);
-//        }
+//        validat name
+        if (!facility.getName().isEmpty()){
+            if (!facility.getName().matches("^([A-Z][a-z])+( [A-Z][a-z]+)*$")){
+                mapErrors.put("name","Vui lòng nhập đúng định dạng!");
+            }
+        } else {
+            mapErrors.put("name","Vui lòng nhập tên!");
+        }
+//        validate numberOfFloors
+        if (facility.getNumberOfFloors() < 0){
+            mapErrors.put("numberOfFloors", "Vui lòng nhập đúng định dạng!");
+        }
+
+//        validate area
+        if (facility.getArea() < 0){
+            mapErrors.put("area", "Vui lòng nhập đúng định dạng!");
+        }
+//        validate cost
+        if (facility.getCost() < 0){
+            mapErrors.put("cost", "Vui lòng nhập đúng định dạng!");
+        }
+
+
+        if (mapErrors.size()==0){
+            this.facilityRepository.addFacility(facility);
+        }
         return mapErrors;
     }
 }

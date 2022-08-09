@@ -11,6 +11,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "FuramaServlet", urlPatterns = "/furama")
 public class FuramaServlet extends HttpServlet {
@@ -171,10 +172,24 @@ public class FuramaServlet extends HttpServlet {
         String freeService = request.getParameter("freeService");
         Facility facility = new Facility(name,area,cost,maxPeople,rentTypeId,serviceTypeId,standardRoom,
                 descriptionOfAmenities,poolArea,numberOfFloors,freeService);
-        facilityService.addFacility(facility);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/add.jsp");
+
+        Map<String,String> mapErrors = this.facilityService.add(facility);
+        if (mapErrors.size()>0){
+            for (Map.Entry<String,String> entry: mapErrors.entrySet()){
+                request.setAttribute(entry.getKey(),entry.getValue());
+            }
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/add.jsp");
+            try {
+                requestDispatcher.forward(request,response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+       request.setAttribute("facilityList",facilityService.displayListFacility());
         try {
-            requestDispatcher.forward(request,response);
+            request.getRequestDispatcher("view/service/list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {
