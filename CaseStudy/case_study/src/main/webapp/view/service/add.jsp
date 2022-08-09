@@ -32,57 +32,57 @@
                 </tr>
                 <tr>
                     <td><label>Tên dịch vụ:</label>
-                        <input class="form-control" type="text" name="name" size="45"/>
+                        <input class="form-control" type="text" name="name" size="45">
                     </td>
                 </tr>
                 <tr>
                     <td><label>Diện tích sử dụng:</label>
-                        <input class="form-control" type="text" name="area" size="45"/>
+                        <input class="form-control" type="text" name="area" size="45">
                     </td>
                 </tr>
                 <tr>
                     <td><label>Chi phí thuê:</label>
-                        <input class="form-control" type="text" name="cost" size="15"/>
+                        <input class="form-control" type="text" name="cost" size="15" >
                     </td>
                 </tr>
                 <tr>
                     <td><label>Số lượng người tối đa:</label>
-                        <input class="form-control" type="text" name="maxPeople" size="15"/>
+                        <input class="form-control" type="text" name="maxPeople" size="15" >
                     </td>
                 </tr>
                 <tr>
                     <td><label>Kiểu thuê:</label>
-                        <input class="form-control" type="text" name="rentTypeId" size="15"/>
+                        <input class="form-control" type="text" name="rentTypeId" size="15">
                     </td>
                 </tr>
 
                 <tr id="s1" style="display: none">
                     <td><label>Tiêu chuẩn phòng:</label>
-                        <input class="form-control" type="text" name="standardRoom" size="15"/>
+                        <input class="form-control" type="text" name="standardRoom" size="15">
                     </td>
                 </tr>
 
                 <tr id="s2" style="display: none">
                     <td><label>Mô tả tiện nghi khác:</label>
-                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15"/>
+                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15">
                     </td>
                 </tr>
 
                 <tr id="s3" style="display: none">
                     <td><label>Diện tích hồ bơi:</label>
-                        <input class="form-control" type="text" name="poolArea" size="15"/>
+                        <input class="form-control" type="text" name="poolArea" size="15">
                     </td>
                 </tr>
 
                 <tr id="s4" style="display: none">
                     <td><label>Số tầng:</label>
-                        <input class="form-control" type="text" name="numberOfFloors" size="15"/>
+                        <input class="form-control" type="text" name="numberOfFloors" size="15">
                     </td>
                 </tr>
 
                 <tr id="s5" style="display: none">
                     <td><label>Dịch vụ miễn phí đi kèm:</label>
-                        <input class="form-control" type="text" name="freeService" size="15"/>
+                        <input class="form-control" type="text" name="freeService" size="15">
                     </td>
                 </tr>
 

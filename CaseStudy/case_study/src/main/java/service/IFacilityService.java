@@ -1,9 +1,11 @@
 package service;
 
-import model.Customer;
+
 import model.Facility;
+import model.FacilityType;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IFacilityService {
     public List<Facility> displayListFacility();
@@ -16,4 +18,7 @@ public interface IFacilityService {
 
     Facility searchById(int id);
 
+    List<FacilityType> listFacilityType();
+
+    public Map<String, String> add(Facility facility);
 }

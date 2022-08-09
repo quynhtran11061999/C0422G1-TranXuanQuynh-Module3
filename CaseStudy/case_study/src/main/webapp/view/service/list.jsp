@@ -11,9 +11,11 @@
 <head>
     <title>List Service</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap/datatables/css/dataTables.bootstrap5.min.css">
 </head>
 <body>
-<%@ include file = "../common/include/navbar.jsp" %>
+<%@ include file="../common/include/navbar.jsp" %>
+<input type="text" hidden id="mess" value="${message}">
 <div class="row">
     <div class="col-lg-5">
         <h1>Danh sách dịch vụ</h1>
@@ -77,7 +79,8 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <table class="table table-success table-striped">
+        <table class="table table-success table-striped table-bordered" id="tableService">
+            <thead>
             <tr>
                 <th>Mã dịch vụ</th>
                 <th>Tên dịch vụ</th>
@@ -93,6 +96,8 @@
                 <th>Các dịch vụ đi kèm</th>
                 <th>Action</th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="facility" items="${facilityList}">
                 <tr>
                     <td>${facility.idService}</td>
@@ -108,13 +113,17 @@
                     <td>${facility.numberOfFloors}</td>
                     <td>${facility.freeService}</td>
                     <td>
-                        <a href="/furama?action=editService" class="text-decoration-none">
+                        <a href="/furama?action=showEditService&idService=${facility.idService}"
+                           class="text-decoration-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
                                  class="bi bi-pen-fill" viewBox="0 0 16 16">
                                 <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001z"/>
                             </svg>
                         </a>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteService" onclick="deleteService(${service.id})">
+                            <%--                        data-bs-target="#deleteService" dung de goi modal--%>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                data-bs-target="#deleteService"
+                                onclick="deleteService('${facility.idService}', '${facility.name}')">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
                                  class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -123,36 +132,67 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>
 
 <!-- Modal delete service -->
+<%--id="deleteService" nut delete se goi modal co id nay`--%>
 <div class="modal fade" id="deleteService" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form method="post" action="/furama?action=delete">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel1">Delete</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input type="text" id = "deleteIdService">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Delete</button>
+    <form method="post" action="/furama?action=deleteService">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel1">Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Bạn có muốn xóa <span id="deleteNameService"></span> !!
+                    <input type="hidden" id="deleteIdService" name="id">
+                    <%--            thẻ input id = "deleteIdService" bây giờ chưa có giá trị--%>
+                    <%--                sau khi onclick xử lý thì (1)--%>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
+                </div>
             </div>
         </div>
-    </div>
     </form>
 </div>
 <script>
-    function deleteService(id){
+    <%--onclick="deleteService('${facility.idService}', '${facility.name}')"--%>
+    <%--   tham số id của function được gán bằng '${facility.idService}' (1)--%>
+    <%--   tham số name của function được gán bằng '${facility.name}'   (2)--%>
+
+    function deleteService(id, name) {
         document.getElementById("deleteIdService").value = id;
+        //giá trị của thẻ có id="deleteIdService" được gán giá trị là id (1)
+        document.getElementById("deleteNameService").innerText = name;
+        //đoạn mã hiển thị của thẻ có id="deleteNameService" sẽ hiển thị name (2)
+    }
+
+    window.onload = function () {
+        let mess = document.getElementById("mess").value;
+        if (mess != null && mess !== "") {
+            alert(mess);
+        }
     }
 </script>
-<%@ include file = "../common/include/footer.jsp" %>
+<%@ include file="../common/include/footer.jsp" %>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../bootstrap/jquery/jquery-3.5.1.min.js"></script>
+<script src="../../bootstrap/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../bootstrap/datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tableService').dataTable({
+            "dom": "lrtip",
+            "lengthChange": false,
+            "pageLength": 5
+        });
+    });
+</script>
 </body>
 </html>

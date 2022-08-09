@@ -112,7 +112,7 @@
     </div>
     <div class="text-center p-3 bg-success">
         © 2022 by:
-        <a class="text-white text-decoration-none" href="https://mdbootstrap.com/">QuynhTran.com</a>
+        <a class="text-white text-decoration-none" href="https://furamavietnam.com/vi/">QuynhTran.com</a>
     </div>
 </footer>
 </body>

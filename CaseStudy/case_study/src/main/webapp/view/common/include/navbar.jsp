@@ -55,7 +55,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/customer?action=displayCustomer">Danh sách khách hàng</a></li>
-                                <li><a class="dropdown-item" href="/customer?action=addCustomer">Thêm mới khách hàng</a></li>
+                                <li><a class="dropdown-item" href="/customer?action=showAddCustomer">Thêm mới khách hàng</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

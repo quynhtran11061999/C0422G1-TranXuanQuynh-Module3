@@ -35,11 +35,17 @@
                 </tr>
                 <tr>
                     <td>Họ tên:</td>
-                    <td><input type="text" name="name" id="name"></td>
+                    <td>
+                        <input type="text" name="name" id="name">
+                        <div style="color: red">${nameCustomer}</div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Ngày sinh:</td>
-                    <td><input type="text" name="birthday" id="birthday"></td>
+                    <td>
+                        <input type="date" name="birthday" id="birthday">
+                         <p class="text-danger">${dateOfBirth}</p>
+                    </td>
                 </tr>
                 <tr>
                     <td>Giới tính:</td>
@@ -47,15 +53,24 @@
                 </tr>
                 <tr>
                     <td>Số CMND:</td>
-                    <td><input type="text" name="idCard" id="idCard"></td>
+                    <td>
+                        <input type="text" name="idCard" id="idCard">
+                        <div style="color: red">${idCard}</div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Số điện thoại:</td>
-                    <td><input type="text" name="phoneNumber" id="phoneNumber"></td>
+                    <td>
+                        <input type="text" name="phoneNumber" id="phoneNumber">
+                        <div style="color: red">${phoneNumber}</div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Email:</td>
-                    <td><input type="text" name="email" id="email"></td>
+                    <td>
+                        <input type="text" name="email" id="email">
+                        <div style="color: red">${email}</div>
+                    </td>
                 </tr>
                 <tr>
                     <td>Địa chỉ:</td>

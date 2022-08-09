@@ -11,9 +11,12 @@
 <head>
     <title>List Customer</title>
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../bootstrap/datatables/css/dataTables.bootstrap5.min.css">
+
 </head>
 <body>
 <%@ include file="../common/include/navbar.jsp" %>
+<input type="text" hidden id="mess" value="${message}">
 <div class="row">
     <div class="col-lg-5">
         <h1>Danh sách khác hàng</h1>
@@ -81,7 +84,8 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <table class="table table-success table-striped">
+        <table class="table table-success table-striped table-bordered" id="tableCustomer">
+            <thead>
             <tr>
                 <th>ID</th>
                 <th>Loại khách</th>
@@ -94,16 +98,18 @@
                 <th>Địa chỉ</th>
                 <th>Action</th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="cus" items="${customerList}">
                 <tr>
                     <td>${cus.idCustomer}</td>
-<%--                    <td>${cus.customerTypeId}</td>--%>
+                        <%--                    <td>${cus.customerTypeId}</td>--%>
                     <td>
-                    <c:forEach var="customerType" items="${customerTypeList}">
-                        <c:if test="${cus.customerTypeId==customerType.customerTypeId}">
-                           ${customerType.customerTypeName}
-                        </c:if>
-                    </c:forEach>
+                        <c:forEach var="customerType" items="${customerTypeList}">
+                            <c:if test="${cus.customerTypeId==customerType.customerTypeId}">
+                                ${customerType.customerTypeName}
+                            </c:if>
+                        </c:forEach>
                     </td>
                     <td>${cus.name}</td>
                     <td>${cus.birthday}</td>
@@ -121,7 +127,8 @@
                             </svg>
                         </a>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#deleteCustomer1" onclick="deleteCustomer(${cus.idCustomer})">
+                                data-bs-target="#deleteCustomer1"
+                                onclick="deleteCustomer('${cus.idCustomer}','${cus.name}')">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="red"
                                  class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
@@ -131,6 +138,7 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>
@@ -144,22 +152,43 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="deleteCustomer" id="deleteCus">
+                    Bạn có muốn xóa <span id="deleteNameCustomer"></span>!!!
+                    <input type="hidden" name="id" id="deleteIdCustomer">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Delete</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Xóa</button>
                 </div>
             </div>
         </div>
     </form>
 </div>
 <script>
-    function deleteCustomer(idCustomer) {
-        document.getElementById("deleteCus").value = idCustomer;
+    function deleteCustomer(id, name) {
+        document.getElementById("deleteIdCustomer").value = id;
+        document.getElementById("deleteNameCustomer").innerText = name;
+    }
+
+    window.onload = function () {
+        let mess = document.getElementById("mess").value;
+        if (mess != null && mess !== "") {
+            alert(mess);
+        }
     }
 </script>
 <%@ include file="../common/include/footer.jsp" %>
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../bootstrap/jquery/jquery-3.5.1.min.js"></script>
+<script src="../../bootstrap/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../bootstrap/datatables/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function (){
+        $('#tableCustomer').dataTable({
+            "dom": "lrtip",
+            "lengthChange": false,
+            "pageLength" : 5
+        });
+    });
+</script>
 </body>
 </html>

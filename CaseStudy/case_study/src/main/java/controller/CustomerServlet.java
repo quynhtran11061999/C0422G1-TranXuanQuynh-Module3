@@ -13,6 +13,7 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet", value = "/customer")
 public class CustomerServlet extends HttpServlet {
@@ -35,13 +36,12 @@ public class CustomerServlet extends HttpServlet {
             case "displayCustomer":
                 displayCustomer(request, response);
                 break;
-            case "addCustomer":
-                addCustomer(request, response);
+            case "showAddCustomer":
+                showAddCustomer(request, response);
                 break;
-            case "editCustomer":
-                editCustomer(request, response);
+            case "showEditCustomer":
+                showEditCustomer(request, response);
                 break;
-
             default:
                 displayHome(request, response);
         }
@@ -69,10 +69,16 @@ public class CustomerServlet extends HttpServlet {
     }
 
     private void deleteCustomer(HttpServletRequest request, HttpServletResponse response) {
-        int id = Integer.parseInt(request.getParameter("deleteCustomer"));
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean check = customerService.deleteCustomer(id);
+        String message = "";
+        if (check){
+            message = "Xóa thành công!!!";
+        }else message = "Xóa không thành công!";
         customerService.deleteCustomer(id);
         List<Customer> customerList = customerService.displayListCustomer();
         request.setAttribute("customerList", customerList);
+        request.setAttribute("message",message);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/list.jsp");
         try {
             requestDispatcher.forward(request, response);
@@ -94,7 +100,7 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-    private void editCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void showEditCustomer(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("idCustomer"));
         Customer customer = customerService.searchById(id);
         request.setAttribute("listCustomer", customer);
@@ -108,7 +114,7 @@ public class CustomerServlet extends HttpServlet {
         }
     }
 
-    private void addCustomer(HttpServletRequest request, HttpServletResponse response) {
+    private void showAddCustomer(HttpServletRequest request, HttpServletResponse response) {
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/add.jsp");
         try {
             requestDispatcher.forward(request, response);
@@ -167,10 +173,24 @@ public class CustomerServlet extends HttpServlet {
         String email = request.getParameter("email");
         String address = request.getParameter("address");
         Customer customer = new Customer(customerTypeId, name, birthday, gender, idCard, phoneNumber, email, address);
-        customerService.addCustomer(customer);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/add.jsp");
+
+        Map<String, String> mapErrors = this.customerService.add(customer);
+        if (mapErrors.size() > 0){
+            for (Map.Entry<String,String> entry: mapErrors.entrySet()){
+                request.setAttribute(entry.getKey(),entry.getValue());
+            }
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/add.jsp");
+            try {
+                requestDispatcher.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        request.setAttribute("customerList",customerService.displayListCustomer());
         try {
-            requestDispatcher.forward(request, response);
+            request.getRequestDispatcher("view/customer/list.jsp").forward(request,response);
         } catch (ServletException e) {
             e.printStackTrace();
         } catch (IOException e) {

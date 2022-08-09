@@ -2,6 +2,7 @@ package repository.impl;
 
 import model.Customer;
 import model.Facility;
+import model.FacilityType;
 import repository.IFacilityRepository;
 
 import java.sql.*;
@@ -17,10 +18,11 @@ public class FacilityRepository implements IFacilityRepository {
     private static final String ADD_FACILITY = "insert into dich_vu (ten_dich_vu,dien_tich,chi_phi_thue,so_nguoi_toi_da,ma_kieu_thue" +
             ",ma_loai_dich_vu,tieu_chuan_phong,mo_ta_tien_nghi_khac,dien_tich_ho_boi,so_tang,dich_vu_mien_phi_di_kem) " +
             "values (?,?,?,?,?,?,?,?,?,?,?);";
-    private static final String EDIT_FACILITY = "update dich_vu set ten_dich_vu = ? , dien_tich = ?, chi_phi_thue = ?, so_nguoi_toi_da = ?, ma_kieu_thue = ?,\n" +
-            " ma_loai_dich_vu = ?,tieu_chuan_phong = ?, mo_ta_tien_nghi_khac = ?,dien_tich_ho_boi = ?, so_tang = ?,dich_vu_mien_phi_di_kem = ?," +
-            "where ma_dich_vu = ?;";
+    private static final String EDIT_FACILITY = "update furama.dich_vu set ten_dich_vu = ? , dien_tich = ?, chi_phi_thue = ?, so_nguoi_toi_da = ?, ma_kieu_thue = ?," +
+            " ma_loai_dich_vu = ?,tieu_chuan_phong = ?, mo_ta_tien_nghi_khac = ?,dien_tich_ho_boi = ?, so_tang = ?,dich_vu_mien_phi_di_kem = ? where ma_dich_vu = ?;";
     private static final String SEARCH_BY_ID_FACILITY = "select * from dich_vu where ma_dich_vu = ?;";
+    private static final String SELECT_FACILITY_TYPE = "SELECT * FROM furama.loai_dich_vu;";
+    private static final String DELETE_FACILITY = "update dich_vu set trang_thai = 0 where ma_dich_vu = ?;";
 
 
     public FacilityRepository() {
@@ -116,6 +118,16 @@ public class FacilityRepository implements IFacilityRepository {
 
     @Override
     public boolean deleteFacility(int id) {
+        int check;
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_FACILITY);
+            preparedStatement.setInt(1,id);
+            check = preparedStatement.executeUpdate();
+            return check>0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
@@ -148,5 +160,23 @@ public class FacilityRepository implements IFacilityRepository {
         }
 
         return facility;
+    }
+
+    @Override
+    public List<FacilityType> listFacilityType() {
+        List<FacilityType> facilityTypes = new ArrayList<>();
+        Connection connection = getConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(SELECT_FACILITY_TYPE);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()){
+                int facilityTypeId = resultSet.getInt("ma_loai_dich_vu");
+                String facilityTypeName = resultSet.getString("ten_loai_dich_vu");
+                facilityTypes.add(new FacilityType(facilityTypeId,facilityTypeName));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return facilityTypes;
     }
 }

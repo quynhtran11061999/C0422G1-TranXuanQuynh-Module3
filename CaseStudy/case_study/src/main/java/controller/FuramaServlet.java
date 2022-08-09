@@ -1,6 +1,7 @@
 package controller;
 
 import model.Facility;
+import model.FacilityType;
 import service.IFacilityService;
 import service.impl.FacilityService;
 
@@ -8,9 +9,10 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "FuramaServlet", value = "/furama")
+@WebServlet(name = "FuramaServlet", urlPatterns = "/furama")
 public class FuramaServlet extends HttpServlet {
     IFacilityService facilityService = new FacilityService();
 
@@ -37,10 +39,33 @@ public class FuramaServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html; charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        if (action == null){
+            action = "";
+        }
+        switch (action){
+            case "addService":
+                addService(request,response);
+                break;
+            case "editService":
+                editService(request,response);
+                break;
+            case "deleteService":
+                deleteService(request, response);
+                break;
+        }
+    }
+
     private void showEditService(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("idService"));
         Facility facility = facilityService.searchById(id);
+        List<FacilityType> facilityTypes = facilityService.listFacilityType();
         request.setAttribute("facility",facility);
+        request.setAttribute("facilityTypes",facilityTypes);
         RequestDispatcher requestDispatcher =  request.getRequestDispatcher("view/service/edit.jsp");
         try {
             requestDispatcher.forward(request,response);
@@ -86,21 +111,23 @@ public class FuramaServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
-        if (action == null){
-            action = "";
-        }
-        switch (action){
-            case "addService":
-                addService(request,response);
-                break;
-            case "editService":
-                editService(request,response);
-                break;
+    private void deleteService(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean check = facilityService.deleteFacility(id);
+        String message="";
+        if (check){
+            message = "Xóa thành công!";
+        }else message = "Xóa không thành công!";
+        List<Facility> facilityList = facilityService.displayListFacility();
+        request.setAttribute("facilityList",facilityList);
+        request.setAttribute("message", message);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/list.jsp");
+        try {
+            requestDispatcher.forward(request,response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -145,7 +172,6 @@ public class FuramaServlet extends HttpServlet {
         Facility facility = new Facility(name,area,cost,maxPeople,rentTypeId,serviceTypeId,standardRoom,
                 descriptionOfAmenities,poolArea,numberOfFloors,freeService);
         facilityService.addFacility(facility);
-//        showDisplayService(request,response);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/service/add.jsp");
         try {
             requestDispatcher.forward(request,response);
