@@ -188,7 +188,7 @@ public class FuramaServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        request.setAttribute("mesage", "Thêm mới thành công!");
+        request.setAttribute("mesageAdd", "Thêm mới thành công!");
         request.setAttribute("facilityList", facilityService.displayListFacility());
         try {
             request.getRequestDispatcher("view/service/list.jsp").forward(request, response);

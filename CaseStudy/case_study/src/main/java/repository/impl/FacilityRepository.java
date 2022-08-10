@@ -14,7 +14,10 @@ public class FacilityRepository implements IFacilityRepository {
     private String jdbcUsername = "root";
     private String jdbcPassword = "lepleplep116";
 
-    private static final String DISPLAY_FACILITY = "SELECT * FROM dich_vu where trang_thai = 1;";
+    private static final String DISPLAY_FACILITY = "SELECT * FROM furama.dich_vu" +
+            " join loai_dich_vu on dich_vu.ma_loai_dich_vu = loai_dich_vu.ma_loai_dich_vu" +
+            " join kieu_thue on kieu_thue.ma_kieu_thue = dich_vu.ma_kieu_thue" +
+            " where trang_thai = 1;";
     private static final String ADD_FACILITY = "insert into dich_vu (ten_dich_vu,dien_tich,chi_phi_thue,so_nguoi_toi_da,ma_kieu_thue" +
             ",ma_loai_dich_vu,tieu_chuan_phong,mo_ta_tien_nghi_khac,dien_tich_ho_boi,so_tang,dich_vu_mien_phi_di_kem) " +
             "values (?,?,?,?,?,?,?,?,?,?,?);";
@@ -61,8 +64,9 @@ public class FacilityRepository implements IFacilityRepository {
                 double poolArea = resultSet.getDouble("dien_tich_ho_boi");
                 int numberOfFloors = resultSet.getInt("so_tang");
                 String freeService = resultSet.getString("dich_vu_mien_phi_di_kem");
-                facilityList.add(new Facility(facilityId, name, area, cost, maxPeople, rentTypeId, serviceTypeId
-                        , standardRoom, descriptionOfAmenities, poolArea, numberOfFloors, freeService));
+                String serviceTypeName = resultSet.getString("ten_loai_dich_vu");
+                String rentalTypeName = resultSet.getString("ten_kieu_thue");
+                facilityList.add(new Facility(facilityId, name, area, cost, maxPeople,standardRoom, descriptionOfAmenities, poolArea, numberOfFloors, freeService,rentalTypeName,serviceTypeName));
             }
         } catch (SQLException e) {
             e.printStackTrace();

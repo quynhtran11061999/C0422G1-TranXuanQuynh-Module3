@@ -19,6 +19,7 @@
 <div class="row">
     <div class="col-lg-5">
         <h1>Danh sách dịch vụ</h1>
+        <p style="color: red">${mesageAdd}</p>
     </div>
     <div class="col-lg-5"></div>
     <div class="col-lg-2">
@@ -87,13 +88,13 @@
                 <th>Diện tích</th>
                 <th>Chi phí thuê</th>
                 <th>Số lượng người tối đa</th>
-                <th>Mã kiểu thuê</th>
-                <th>Mã loại dịch vụ</th>
                 <th>Tiêu chuẩn phòng</th>
                 <th>Mô tả tiện nghi khác</th>
                 <th>Diện tích hồ bơi</th>
                 <th>Số tầng</th>
                 <th>Các dịch vụ đi kèm</th>
+                <th>Tên kiểu thuê</th>
+                <th>Tên loại dịch vụ</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -105,13 +106,13 @@
                     <td>${facility.area}</td>
                     <td>${facility.cost}</td>
                     <td>${facility.maxPeople}</td>
-                    <td>${facility.rentTypeId}</td>
-                    <td>${facility.serviceTypeId}</td>
                     <td>${facility.standardRoom}</td>
                     <td>${facility.descriptionOfAmenities}</td>
                     <td>${facility.poolArea}</td>
                     <td>${facility.numberOfFloors}</td>
                     <td>${facility.freeService}</td>
+                    <td>${facility.serviceTypeName}</td>
+                    <td>${facility.rentalTypeName}</td>
                     <td>
                         <a href="/furama?action=showEditService&idService=${facility.idService}"
                            class="text-decoration-none">
@@ -161,6 +162,23 @@
         </div>
     </form>
 </div>
+
+<div class="modal fade" id="modalId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+           <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger">Thông báo</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                        <p id="message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
     <%--onclick="deleteService('${facility.idService}', '${facility.name}')"--%>
     <%--   tham số id của function được gán bằng '${facility.idService}' (1)--%>
@@ -175,8 +193,12 @@
 
     window.onload = function () {
         let mess = document.getElementById("mess").value;
+        document.getElementById("message").innerText=mess;
         if (mess != null && mess !== "") {
-            alert(mess);
+          $(document).ready(function(){
+              $('#modalId').modal("show")
+              }
+          )
         }
     }
 </script>

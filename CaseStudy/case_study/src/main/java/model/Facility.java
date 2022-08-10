@@ -13,6 +13,8 @@ public class Facility {
     private double poolArea;
     private int numberOfFloors;
     private String freeService;
+    private String serviceTypeName;
+    private String rentalTypeName;
 
     public Facility() {
     }
@@ -44,6 +46,21 @@ public class Facility {
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
         this.freeService = freeService;
+    }
+
+    public Facility(int idService, String name, int area, double cost, int maxPeople, String standardRoom, String descriptionOfAmenities, double poolArea, int numberOfFloors, String freeService, String serviceTypeName, String rentalTypeName) {
+        this.idService = idService;
+        this.name = name;
+        this.area = area;
+        this.cost = cost;
+        this.maxPeople = maxPeople;
+        this.standardRoom = standardRoom;
+        this.descriptionOfAmenities = descriptionOfAmenities;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
+        this.freeService = freeService;
+        this.serviceTypeName = serviceTypeName;
+        this.rentalTypeName = rentalTypeName;
     }
 
     public int getIdService() {
@@ -140,5 +157,21 @@ public class Facility {
 
     public void setFreeService(String freeService) {
         this.freeService = freeService;
+    }
+
+    public String getServiceTypeName() {
+        return serviceTypeName;
+    }
+
+    public void setServiceTypeName(String serviceTypeName) {
+        this.serviceTypeName = serviceTypeName;
+    }
+
+    public String getRentalTypeName() {
+        return rentalTypeName;
+    }
+
+    public void setRentalTypeName(String rentalTypeName) {
+        this.rentalTypeName = rentalTypeName;
     }
 }

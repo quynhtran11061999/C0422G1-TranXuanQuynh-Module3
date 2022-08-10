@@ -14,7 +14,7 @@
 </head>
 <body>
 <%@ include file="../common/include/navbar.jsp" %>
-<div class="container-fluid">
+<div class="container">
     <h1>Thêm mới dịch vụ</h1>
     <form action="/furama?action=addService" method="post">
         <fieldset>
@@ -22,7 +22,7 @@
             <table class="form-control-lg table table-success table-striped">
                 <tr>
                     <td>
-                        <select class="form-select-lg" name="serviceTypeId" onchange="showServiceInput(this.value)">
+                        <select class="form-select-lg text-center" style="width: 100%" name="serviceTypeId" onchange="showServiceInput(this.value)">
                             <option value="None">Chọn loại dịch vụ</option>
                             <option value="1">Villa</option>
                             <option value="2">House</option>
@@ -45,18 +45,18 @@
                 </tr>
                 <tr>
                     <td><label>Chi phí thuê:</label>
-                        <input class="form-control" type="text" name="cost" size="15" >
+                        <input class="form-control" type="text" name="cost" size="15">
                         <div style="color: red">${cost1}</div>
                     </td>
                 </tr>
                 <tr>
                     <td><label>Số lượng người tối đa:</label>
-                        <input required class="form-control" type="text" name="maxPeople" size="15" >
+                        <input class="form-control" type="text" name="maxPeople" size="15" >
                     </td>
                 </tr>
                 <tr>
                     <td><label>Kiểu thuê:</label>
-                        <input required class="form-control" type="text" name="rentTypeId" size="15">
+                        <input class="form-control" type="text" name="rentTypeId" size="15">
                     </td>
                 </tr>
 
@@ -68,26 +68,26 @@
 
                 <tr id="s2" style="display: none">
                     <td><label>Mô tả tiện nghi khác:</label>
-                        <input required class="form-control" type="text" name="descriptionOfAmenities" size="15">
+                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15">
                     </td>
                 </tr>
 
                 <tr id="s3" style="display: none">
                     <td><label>Diện tích hồ bơi:</label>
-                        <input required class="form-control" type="text" name="poolArea" size="15">
+                        <input class="form-control" type="text" name="poolArea" size="15" value="0">
                     </td>
                 </tr>
 
                 <tr id="s4" style="display: none">
                     <td><label>Số tầng:</label>
-                        <input class="form-control" type="text" name="numberOfFloors" size="15">
+                        <input class="form-control" type="text" name="numberOfFloors" size="15" value="0">
                         <div style="color: red">${numberOfFloors}</div>
                     </td>
                 </tr>
 
                 <tr id="s5" style="display: none">
                     <td><label>Dịch vụ miễn phí đi kèm:</label>
-                        <input required class="form-control" type="text" name="freeService" size="15">
+                        <input class="form-control" type="text" name="freeService" size="15">
                     </td>
                 </tr>
 
