@@ -19,7 +19,7 @@
     <form action="/furama?action=addService" method="post">
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin dịch vụ</legend>
-            <table class="form-control-lg">
+            <table class="form-control-lg table table-success table-striped">
                 <tr>
                     <td>
                         <select class="form-select-lg" name="serviceTypeId" onchange="showServiceInput(this.value)">
@@ -31,7 +31,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label>Tên dịch vụ:</label>
+                    <td>
+                        <label>Tên dịch vụ:</label>
                         <input class="form-control" type="text" name="name" size="45">
                         <div style="color:red;">${name}</div>
                     </td>
@@ -50,12 +51,12 @@
                 </tr>
                 <tr>
                     <td><label>Số lượng người tối đa:</label>
-                        <input class="form-control" type="text" name="maxPeople" size="15" >
+                        <input required class="form-control" type="text" name="maxPeople" size="15" >
                     </td>
                 </tr>
                 <tr>
                     <td><label>Kiểu thuê:</label>
-                        <input class="form-control" type="text" name="rentTypeId" size="15">
+                        <input required class="form-control" type="text" name="rentTypeId" size="15">
                     </td>
                 </tr>
 
@@ -67,13 +68,13 @@
 
                 <tr id="s2" style="display: none">
                     <td><label>Mô tả tiện nghi khác:</label>
-                        <input class="form-control" type="text" name="descriptionOfAmenities" size="15">
+                        <input required class="form-control" type="text" name="descriptionOfAmenities" size="15">
                     </td>
                 </tr>
 
                 <tr id="s3" style="display: none">
                     <td><label>Diện tích hồ bơi:</label>
-                        <input class="form-control" type="text" name="poolArea" size="15">
+                        <input required class="form-control" type="text" name="poolArea" size="15">
                     </td>
                 </tr>
 
@@ -86,13 +87,13 @@
 
                 <tr id="s5" style="display: none">
                     <td><label>Dịch vụ miễn phí đi kèm:</label>
-                        <input class="form-control" type="text" name="freeService" size="15">
+                        <input required class="form-control" type="text" name="freeService" size="15">
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="2" align="center">
-                        <input class="form-control" type="submit" value="Thêm mới dịch vụ"/>
+                        <input class="form-control btn-success" style="width: 300px" type="submit" value="Thêm mới dịch vụ"/>
                     </td>
                 </tr>
             </table>

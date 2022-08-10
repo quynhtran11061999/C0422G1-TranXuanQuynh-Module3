@@ -19,6 +19,7 @@
     <form action="/furama?action=editService" method="post">
         <fieldset>
             <legend>Thông tin dịch vụ</legend>
+            <p style="color:red;">${mesageEdit}</p>
             <table class="form-control-lg">
                 <tr>
                     <td>

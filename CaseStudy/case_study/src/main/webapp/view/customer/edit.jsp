@@ -16,6 +16,7 @@
 <div class="container-fluid">
     <form action="/customer?action=updateCustomer" method="post">
         <h1>Sửa thông tin khách hàng</h1>
+        <p style="color: red">${errorEdit}</p>
         <fieldset>
             <legend style="margin-top: 15px; margin-bottom: 15px">Thông tin khách hàng</legend>
             <table>

@@ -79,7 +79,7 @@
 </div>
 <div class="row">
     <div class="col-lg-12">
-        <table class="table table-success table-striped table-bordered" id="tableService">
+        <table class="table table-success table-striped table-bordered table-responsive" id="tableService">
             <thead>
             <tr>
                 <th>Mã dịch vụ</th>

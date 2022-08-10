@@ -49,7 +49,7 @@ public class FacilityService implements IFacilityService {
         Map<String,String> mapErrors = new HashMap<>();
 //        validat name
         if (!facility.getName().isEmpty()){
-            if (!facility.getName().matches("^([A-Z][a-z])+( [A-Z][a-z]+)*$")){
+            if (!facility.getName().matches("^([A-Z][a-z]+)+( [A-Z][a-z]+)*$")){
                 mapErrors.put("name","Vui lòng nhập đúng định dạng!");
             }
         } else {

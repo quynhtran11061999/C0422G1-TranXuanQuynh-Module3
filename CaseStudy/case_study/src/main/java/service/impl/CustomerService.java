@@ -43,7 +43,7 @@ public class CustomerService implements ICustomerService {
         Map<String,String> mapErrors = new HashMap<>();
 //        validat name
         if (!customer.getName().isEmpty()){
-            if (!customer.getName().matches("^([A-Z][a-z])+( [A-Z][a-z]+)*$")){
+            if (!customer.getName().matches("^([A-Z][a-z]+)+( [A-Z][a-z]+)*$")){
                 mapErrors.put("nameCustomer","Vui lòng nhập đúng định dạng!");
             }
         } else {
@@ -77,7 +77,7 @@ public class CustomerService implements ICustomerService {
         }
 //        validate email
         if (!customer.getEmail().isEmpty()){
-            if (!customer.getEmail().matches("^[a-z0-9]+@[a-z0-9]+\\\\.[a-z]+$")){
+            if (!customer.getEmail().matches("^[a-z0-9]+@[a-z0-9]+\\.[a-z]+$")){
                 mapErrors.put("email","Vui lòng nhập đúng định dạng!");
             }
         } else {

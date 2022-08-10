@@ -154,6 +154,7 @@ public class CustomerServlet extends HttpServlet {
         Customer customer = new Customer(customerId, customerTypeId, name, birthday, gender, idCard, phoneNumber, email, address);
         customerService.editCustomer(customer);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("view/customer/edit.jsp");
+        request.setAttribute("errorEdit","Sửa thông tin thành công");
         try {
             requestDispatcher.forward(request, response);
         } catch (ServletException e) {
@@ -188,6 +189,7 @@ public class CustomerServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
+        request.setAttribute("errorAdd","Thêm mới thành công!");
         request.setAttribute("customerList",customerService.displayListCustomer());
         try {
             request.getRequestDispatcher("view/customer/list.jsp").forward(request,response);

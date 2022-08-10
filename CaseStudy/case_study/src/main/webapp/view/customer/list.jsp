@@ -20,6 +20,7 @@
 <div class="row">
     <div class="col-lg-5">
         <h1>Danh sách khác hàng</h1>
+        <p style="color: red" >${errorAdd}</p>
     </div>
     <div class="col-lg-5"></div>
     <div class="col-lg-2">
@@ -119,7 +120,7 @@
                     <td>${cus.email}</td>
                     <td>${cus.address}</td>
                     <td>
-                        <a href="/customer?action=editCustomer&idCustomer=${cus.idCustomer}"
+                        <a href="/customer?action=showEditCustomer&idCustomer=${cus.idCustomer}"
                            class="text-decoration-none">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="yellow"
                                  class="bi bi-pen-fill" viewBox="0 0 16 16">
